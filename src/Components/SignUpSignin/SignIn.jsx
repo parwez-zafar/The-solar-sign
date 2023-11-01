@@ -3,8 +3,13 @@ import signup1 from "../../assets/images/AuthFormImage.png";
 import SignInForm from "./Form/SignInForm.jsx";
 
 const SignIn = () => {
+  const imageStyle = {
+    maxWidth: "100%",
+    height: '100%',
+    display: "block",
+  };
   return (
-    <Stack width="98vw" maxHeight="100vh" maxWidth="98vw">
+    <Stack width="98vw" maxWidth="98vw">
       <Grid container spacing={0}>
         <Grid item xs={12} md={6}>
           <div
@@ -27,11 +32,13 @@ const SignIn = () => {
               {" "}
               3legant.
             </Typography>
-            <img
-              style={{ height: "auto", maxWidth: "100%", }}
-              src={signup1}
-              alt="signup1"
-            />
+            <div style={{ height: '80vh' }}>
+              <img
+                style={imageStyle}
+                src={signup1}
+                alt="signup1"
+              />
+            </div>
           </div>
         </Grid>
 

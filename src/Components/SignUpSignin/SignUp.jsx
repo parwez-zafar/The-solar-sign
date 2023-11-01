@@ -5,11 +5,11 @@ import SignupForm from "./Form/SignupForm.jsx";
 const SignUp = () => {
   const imageStyle = {
     maxWidth: "100%",
-    height: "auto",
+    height: '100%',
     display: "block",
   };
   return (
-    <Stack width="98vw" maxHeight="100vh" maxWidth="98vw">
+    <Stack width="98vw" maxWidth="98vw">
       <Grid container spacing={0}>
         <Grid item xs={12} md={6}>
           <div
@@ -32,16 +32,20 @@ const SignUp = () => {
               {" "}
               3legant.
             </Typography>
-            <img
-              style={imageStyle}
-              src={signup1}
-              alt="signup1"
-            />
+            <div style={{ height: '80vh' }}>
+              <img
+                style={imageStyle}
+                src={signup1}
+                alt="signup1"
+              />
+            </div>
           </div>
         </Grid>
 
         <Grid item xs={12} md={6}>
+          {/* <div style={{ height: '100vh', border: 'solid' }}> */}
           <SignupForm />
+          {/* </div> */}
         </Grid>
       </Grid>
     </Stack>
