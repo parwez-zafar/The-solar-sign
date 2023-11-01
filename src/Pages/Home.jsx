@@ -1,13 +1,14 @@
 import React from "react";
 import Header from "../Components/Header";
 import Hero from "../Components/Hero";
-import Brands from "../Components/Brands";
+import Footer from "../Components/footer";
 
 const Home = () => {
   return (
     <React.Fragment>
       <Header />
       <Hero />
+      <Footer />
       {/* <Brands /> */}
     </React.Fragment>
   );
