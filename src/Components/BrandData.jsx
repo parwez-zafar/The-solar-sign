@@ -30,54 +30,6 @@ const BrandData = [
     src: BrandLogo6,
     alt: "Brand Logo 6",
   },
-  {
-    src: BrandLogo1,
-    alt: "Brand Logo 1",
-  },
-  {
-    src: BrandLogo2,
-    alt: "Brand Logo 2",
-  },
-  {
-    src: BrandLogo3,
-    alt: "Brand Logo 3",
-  },
-  {
-    src: BrandLogo4,
-    alt: "Brand Logo 4",
-  },
-  {
-    src: BrandLogo5,
-    alt: "Brand Logo 5",
-  },
-  {
-    src: BrandLogo6,
-    alt: "Brand Logo 6",
-  },
-  {
-    src: BrandLogo1,
-    alt: "Brand Logo 1",
-  },
-  {
-    src: BrandLogo2,
-    alt: "Brand Logo 2",
-  },
-  {
-    src: BrandLogo3,
-    alt: "Brand Logo 3",
-  },
-  {
-    src: BrandLogo4,
-    alt: "Brand Logo 4",
-  },
-  {
-    src: BrandLogo5,
-    alt: "Brand Logo 5",
-  },
-  {
-    src: BrandLogo6,
-    alt: "Brand Logo 6",
-  },
 ];
 
 export default BrandData;

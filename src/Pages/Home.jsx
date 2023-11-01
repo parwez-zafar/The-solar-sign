@@ -1,18 +1,14 @@
 import React from "react";
-
 import Hero from "../Components/Hero";
 import Brands from "../Components/Brands";
-import SignUp from "../Components/SignUpSignin/SignUp";
-import SignIn from "../Components/SignUpSignin/SignIn";
+import ServicesCard from "../Components/ServicesCard/ServicesCard";
 
 const Home = () => {
   return (
     <React.Fragment>
       <Hero />
-      {/* <SignUp /> */}
-      {/* <SignIn /> */}
-      {/* <Brands /> */}
       <Brands />
+      <ServicesCard />
     </React.Fragment>
   );
 };

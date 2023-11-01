@@ -3,7 +3,7 @@ import BrandData from "./BrandData";
 
 const Brands = () => {
   return (
-    <Grid>
+    <Grid container justifyContent="space-between" sx={{ padding: "0 1.5rem" }}>
       {BrandData.map((item, i) => (
         <img
           key={i}
