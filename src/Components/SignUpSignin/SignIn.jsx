@@ -4,14 +4,18 @@ import SignInForm from "./Form/SignInForm.jsx";
 
 const SignIn = () => {
   return (
-    <Stack width="100vw" maxHeight="100vh" maxWidth="100vw">
+    <Stack width="98vw" maxHeight="100vh" maxWidth="98vw">
       <Grid container spacing={0}>
         <Grid item xs={12} md={6}>
           <div
             style={{
               backgroundColor: "#F3F5F7",
-              height: "auto",
+              height: "100%", // Set the height to 100% to prevent overflow
               width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -24,7 +28,7 @@ const SignIn = () => {
               3legant.
             </Typography>
             <img
-              style={{ height: "auto", width: "100%" }}
+              style={{ height: "auto", maxWidth: "100%", }}
               src={signup1}
               alt="signup1"
             />

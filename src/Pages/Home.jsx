@@ -1,15 +1,90 @@
 import React from "react";
-import Hero from "../Components/Hero";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import InstagramImages from "../Data/InstagramImages";
 import BrandData from "../Data/BrandData";
 import ServicesCardData from "../Data/ServicesCardData";
+import CustomButton from "../Components/CustomButton";
+import heroImage from "../assets/images/Hero Image.png";
 
 const Home = () => {
+  const imageStyle = {
+    maxWidth: "100%",
+    height: "auto",
+    display: "block",
+  };
   return (
     <React.Fragment>
       {/* main hero section  */}
-      <Hero />
+      <Box
+        sx={{
+          background: "#FFC95C",
+          height: "auto",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Container>
+          <br />
+          <br />
+          <Grid
+            container
+            spacing={{ xs: 1, md: 1 }}
+            columns={{ xs: 4, sm: 8, md: 8 }}
+          >
+            <Grid
+              item
+              xs={4}
+              sm={4}
+              md={4}
+              sx={{
+                display: "flex",
+                alignItems: "left",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontFamily: "Poppins",
+                  fontSize: { xs: "1.5rem", sm: "2rem", md: "4rem" },
+                  fontStyle: "normal",
+                  fontWeight: "600",
+                  lineHeight: { xs: "2rem", sm: "3rem", md: "4rem" },
+                  textAlign: { xs: "center", sm: "start" },
+                }}
+                gutterBottom
+              >
+                Listen to the <span style={{ color: "#377dff" }}>amazing</span>{" "}
+                music sound.
+              </Typography>
+              <Typography
+                sx={{
+                  fontFamily: "Inter",
+                  fontSize: { xs: "1rem", sm: "1.3rem", md: "1.3rem" },
+                  textAlign: { xs: "center", sm: "start" },
+                }}
+                gutterBottom
+              >
+                Experience music like never before.
+              </Typography>
+              <br />
+
+              <Grid
+                display="flex"
+                justifyContent={{ xs: "center", sm: "flex-start" }}
+                alignItems="center"
+              >
+                <CustomButton type="button">Shopping Now</CustomButton>
+              </Grid>
+            </Grid>
+            <Grid item xs={4} sm={4} md={4}>
+              <img src={heroImage} alt="heroimage" style={imageStyle} />
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
       {/* brands section  */}
       <Container>
         {BrandData.map((item, i) => (

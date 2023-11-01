@@ -43,15 +43,15 @@ const SignupForm = () => {
     <Stack
       // border='solid'
       height="100vh"
-      justifyContent={{ xs: "flex-start", sm: "center", md: 4 }}
+      justifyContent={{ xs: "flex-start", sm: "center" }}
       alignItems="center"
     >
       <form noValidate>
-        <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 200, sm: 400 }}>
+        <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 300, sm: 400 }}>
           <h1 style={{ fontFamily: "Poppins" }}>Sign Up</h1>
           <Typography variant="subtitle1">
             Already have an account?{" "}
-            <Link style={{ color: "#38CB89", textDecoration: "none" }}>
+            <Link to='/signin' style={{ color: "#38CB89", textDecoration: "none" }}>
               Sign in
             </Link>{" "}
           </Typography>

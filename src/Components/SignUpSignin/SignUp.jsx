@@ -3,15 +3,24 @@ import signup1 from "../../assets/images/AuthFormImage.png";
 import SignupForm from "./Form/SignupForm.jsx";
 
 const SignUp = () => {
+  const imageStyle = {
+    maxWidth: "100%",
+    height: "auto",
+    display: "block",
+  };
   return (
-    <Stack width="100vw" maxHeight="100vh" maxWidth="auto">
+    <Stack width="98vw" maxHeight="100vh" maxWidth="98vw">
       <Grid container spacing={0}>
         <Grid item xs={12} md={6}>
           <div
             style={{
               backgroundColor: "#F3F5F7",
-              height: "auto",
+              height: "100%", // Set the height to 100% to prevent overflow
               width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Typography
@@ -24,7 +33,7 @@ const SignUp = () => {
               3legant.
             </Typography>
             <img
-              style={{ height: "auto", width: "100%" }}
+              style={imageStyle}
               src={signup1}
               alt="signup1"
             />
