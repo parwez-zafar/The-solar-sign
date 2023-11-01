@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 
-const CustomButton = ({ type, children }) => {
+const CustomButton = ({ type, children, wdth }) => {
   return (
     <Button
       type={type}
@@ -13,7 +13,7 @@ const CustomButton = ({ type, children }) => {
         borderRadius: "5px",
         fontFamily: "Inter",
         textTransform: "none",
-        width: "35%",
+        width: `${wdth}`,
       }}
     >
       {children}
