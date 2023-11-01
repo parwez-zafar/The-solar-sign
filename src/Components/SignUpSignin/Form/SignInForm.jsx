@@ -36,12 +36,12 @@ const SignInForm = () => {
       alignItems="center"
     >
       <form noValidate>
-        <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 200, sm: 400 }}>
+        <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 300, sm: 400 }}>
           <h1 style={{ fontFamily: "Poppins" }}>Sign In</h1>
           <Typography variant="subtitle1">
             {" "}
             Don&apos;t have an account?{" "}
-            <Link style={{ color: "#38CB89", textDecoration: "none" }}>
+            <Link to='/signup' style={{ color: "#38CB89", textDecoration: "none" }}>
               Sign Up
             </Link>{" "}
           </Typography>
