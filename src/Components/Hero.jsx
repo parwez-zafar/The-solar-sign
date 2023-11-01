@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import heroImage from "../assets/images/Hero Image.png";
-import CustomButton from "./Button";
+import CustomButton from "./CustomButton";
 
 const Hero = () => {
   const imageStyle = {
@@ -20,12 +20,16 @@ const Hero = () => {
         justifyContent: "center",
       }}
     >
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        <Grid item xs={4} sm={4} md={4}>
           <Typography
             sx={{
               fontFamily: "Poppins",
-              fontSize: { xs: "4rem", sm: "4rem" },
+              fontSize: { xs: "1rem", sm: "4rem" },
               fontStyle: "normal",
               fontWeight: "600",
               lineHeight: "4rem",
@@ -45,9 +49,9 @@ const Hero = () => {
             Experience music like never before.
           </Typography>
           <br />
-          <CustomButton type="button">Shopping Now</CustomButton>
+          <CustomButton>Shopping Now</CustomButton>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4} sm={4} md={4}>
           <img src={heroImage} alt="heroimage" style={imageStyle} />
         </Grid>
       </Grid>
