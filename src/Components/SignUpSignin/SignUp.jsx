@@ -1,5 +1,5 @@
 import { Grid, Stack, Typography } from "@mui/material";
-import signup1 from "/image/signup1.png";
+import signup1 from "../../assets/images/AuthFormImage.png";
 import SignupForm from "./Form/SignupForm.jsx";
 
 const SignUp = () => {

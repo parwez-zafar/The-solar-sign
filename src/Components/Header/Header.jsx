@@ -9,6 +9,7 @@ import {
   Badge,
   MenuItem,
   Menu,
+  Container,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -149,8 +150,9 @@ const Header = () => {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ background: "#fff" }}>
+    <Container>
+      <Box sx={{ flexGrow: 1 }}>
+        {/* <AppBar position="static" sx={{ background: "#fff" }}> */}
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -171,9 +173,6 @@ const Header = () => {
               fontFamily: "Poppins",
               fontWeight: 600,
               cursor: "pointer",
-              display: { xs: "flex", md: "initial" }, // Adjust the display property
-              alignItems: "center", // Center vertically for small screens
-              "& > svg": { marginRight: 1 }, // Add margin for icon
             }}
           >
             3legant.
@@ -232,11 +231,12 @@ const Header = () => {
             </IconButton>
           </Box>
         </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-      {renderMobileNavLink}
-    </Box>
+        {/* </AppBar> */}
+        {renderMobileMenu}
+        {renderMenu}
+        {renderMobileNavLink}
+      </Box>
+    </Container>
   );
 };
 

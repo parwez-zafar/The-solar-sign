@@ -24,6 +24,7 @@ const CustomButton = ({ type, children, wdth }) => {
 CustomButton.propTypes = {
   type: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  wdth: PropTypes.node,
 };
 
 export default CustomButton;

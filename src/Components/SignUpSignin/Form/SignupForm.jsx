@@ -8,7 +8,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import CustomButton from "../../CustomButton";
+import CustomButton from "../../../Components/CustomButton";
 
 const LinkStyle = {
   color: "black",

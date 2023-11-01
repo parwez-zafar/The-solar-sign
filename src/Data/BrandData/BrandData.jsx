@@ -1,9 +1,9 @@
-import BrandLogo1 from "../assets/svg/brand logo1.svg";
-import BrandLogo2 from "../assets/svg/brand logo2.svg";
-import BrandLogo3 from "../assets/svg/brand logo3.svg";
-import BrandLogo4 from "../assets/svg/brand logo4.svg";
-import BrandLogo5 from "../assets/svg/brand logo5.svg";
-import BrandLogo6 from "../assets/svg/brand logo6.svg";
+import BrandLogo1 from "../../assets/svg/brand logo1.svg";
+import BrandLogo2 from "../../assets/svg/brand logo2.svg";
+import BrandLogo3 from "../../assets/svg/brand logo3.svg";
+import BrandLogo4 from "../../assets/svg/brand logo4.svg";
+import BrandLogo5 from "../../assets/svg/brand logo5.svg";
+import BrandLogo6 from "../../assets/svg/brand logo6.svg";
 
 const BrandData = [
   {
