@@ -45,7 +45,7 @@ const Hero = () => {
             Experience music like never before.
           </Typography>
           <br />
-          <CustomButton type="button">Shopping Now</CustomButton>
+          <CustomButton type="button" wdth={'35%'}>Shopping Now</CustomButton>
         </Grid>
         <Grid item xs={6}>
           <img src={heroImage} alt="heroimage" style={imageStyle} />
