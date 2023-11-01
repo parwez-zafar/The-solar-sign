@@ -2,6 +2,7 @@ import * as React from "react";
 import {
   AppBar,
   Box,
+  Drawer,
   Toolbar,
   IconButton,
   Typography,
@@ -77,35 +78,42 @@ const Header = () => {
   );
 
   const renderMobileNavLink = (
-    <Menu
-      anchorEl={showNavLinks}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "left",
-      }}
+    <Drawer
+      anchor="left"
       open={isMobileNavLinkOpen}
       onClose={handleMobileNavLinksClose}
     >
-      {pages.map((page) => (
-        <MenuItem key={page.name}>
-          <NavLink
-            to={page.path}
-            style={{
-              textDecoration: "none",
-              fontFamily: "Space Grotesk",
-              color: "#141718",
-            }}
-          >
-            <Typography noWrap>{page.name}</Typography>
-          </NavLink>
-        </MenuItem>
-      ))}
-    </Menu>
+      <div
+        style={{
+          width: 250,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        {pages.map((page) => (
+          <MenuItem key={page.name} sx={{ textAlign: "center" }}>
+            <NavLink
+              to={page.path}
+              style={{
+                textDecoration: "none",
+                width: "100%",
+              }}
+            >
+              <Typography
+                variant="body1"
+                style={{
+                  fontFamily: "Space Grotesk",
+                  color: "#141718",
+                  fontWeight: "bold",
+                }}
+              >
+                {page.name}
+              </Typography>
+            </NavLink>
+          </MenuItem>
+        ))}
+      </div>
+    </Drawer>
   );
 
   const renderMobileMenu = (
@@ -163,6 +171,9 @@ const Header = () => {
               fontFamily: "Poppins",
               fontWeight: 600,
               cursor: "pointer",
+              display: { xs: "flex", md: "initial" }, // Adjust the display property
+              alignItems: "center", // Center vertically for small screens
+              "& > svg": { marginRight: 1 }, // Add margin for icon
             }}
           >
             3legant.
@@ -175,11 +186,17 @@ const Header = () => {
                   to={page.path}
                   style={{
                     textDecoration: "none",
-                    fontFamily: "Space Grotesk",
-                    color: "#141718",
                   }}
                 >
-                  <Typography noWrap sx={{ ml: 5 }}>
+                  <Typography
+                    noWrap
+                    sx={{
+                      ml: 5,
+                      fontFamily: "Space Grotesk",
+                      color: "#141718",
+                      fontWeight: "bold",
+                    }}
+                  >
                     {page.name}
                   </Typography>
                 </NavLink>

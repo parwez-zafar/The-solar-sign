@@ -10,12 +10,14 @@ import Root from "./Components/Root";
 import SignIn from "./Components/SignUpSignin/SignIn";
 import SignUp from "./Components/SignUpSignin/SignUp";
 import React from "react";
+import AuthForm from "./Pages/AuthForm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <React.Fragment>
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
+        <Route path="authform" element={<AuthForm />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
       </Route>

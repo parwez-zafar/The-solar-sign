@@ -11,7 +11,7 @@ const Brands = () => {
           alt={item.alt}
           style={{
             width: "auto",
-            margin: "0 10px",
+            margin: "10px 10px",
           }}
         />
       ))}

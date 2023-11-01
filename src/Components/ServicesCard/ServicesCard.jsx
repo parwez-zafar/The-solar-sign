@@ -29,7 +29,7 @@ const ServicesCard = () => {
   ];
 
   return (
-    <Grid container justifyContent="center" sx={{ padding: "0 2rem" }}>
+    <Grid container justifyContent="center" sx={{ padding: "0 1.5rem" }}>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
