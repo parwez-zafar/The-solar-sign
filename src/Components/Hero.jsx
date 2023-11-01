@@ -8,6 +8,11 @@ const Hero = () => {
     height: "auto",
     display: "block",
   };
+  // const buttonCenterStyle = {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  // };
 
   return (
     <Box
@@ -24,15 +29,22 @@ const Hero = () => {
         container
         spacing={{ xs: 2, md: 3 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
+        alignItems='center'
+        justifyContent='center'
       >
-        <Grid item xs={4} sm={4} md={4}>
+        <Grid item
+          xs={3} sm={4} md={4}
+
+        // border='solid'
+        >
           <Typography
             sx={{
               fontFamily: "Poppins",
-              fontSize: { xs: "1rem", sm: "4rem" },
+              fontSize: { xs: "2rem", sm: "4rem" },
               fontStyle: "normal",
               fontWeight: "600",
-              lineHeight: "4rem",
+              lineHeight: { xs: "3rem", sm: "4rem" },
+              textAlign: { xs: 'center', sm: 'start' },
             }}
             gutterBottom
           >
@@ -43,19 +55,26 @@ const Hero = () => {
             sx={{
               fontFamily: "Inter",
               fontSize: { xs: "1.3rem", sm: "1.3rem" },
+              textAlign: { xs: 'center', sm: 'start' },
             }}
             gutterBottom
           >
             Experience music like never before.
           </Typography>
           <br />
-          <CustomButton type="button">Shopping Now</CustomButton>
+          {/* <CustomButton type="button">Shopping Now</CustomButton> */}
+          {/* <CustomButton type="button" sx={{ textAlign: 'center' }}>Shopping Now</CustomButton> */}
+          {/* <CustomButton type="button" style={buttonCenterStyle}>Shopping Now</CustomButton> */}
+
+          <Grid display='flex' justifyContent={{ xs: 'center', sm: 'flex-start' }} alignItems='center'>
+            <CustomButton type="button">Shopping Now</CustomButton>
+          </Grid>
         </Grid>
         <Grid item xs={4} sm={4} md={4}>
           <img src={heroImage} alt="heroimage" style={imageStyle} />
         </Grid>
       </Grid>
-    </Box>
+    </Box >
   );
 };
 
