@@ -17,18 +17,34 @@ const LinkStyle = {
 };
 
 const SignupForm = () => {
-  // const [user, setUser] = useState({
-  //     name: "",
-  //     email: "",
-  //     password: "",
-  //     username: ""
-  // })
-
+  const [user, setUser] = useState({
+    name: "",
+    username: "",
+    email: "",
+    password: ""
+  })
+  const handerInputChanges = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+  // console.log("user ", user);
   const [acceptTnC, setAcceptTnC] = useState(false);
-  console.log(acceptTnC);
+  // console.log(acceptTnC);
+
+  // form Change
   const handleChange = () => {
     setAcceptTnC(!acceptTnC);
   };
+
+  // form submit
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!user.name || !user.username || !user.email || !user.password || !acceptTnC) {
+      alert('fill mandatory fields ');
+      return;
+    }
+    console.log("submitted");
+    alert('form submitted')
+  }
   const Term = () => {
     return (
       <>
@@ -46,7 +62,7 @@ const SignupForm = () => {
       justifyContent={{ xs: "flex-start", sm: "center" }}
       alignItems="center"
     >
-      <form noValidate>
+      <form>
         <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 300, sm: 400 }}>
           <h1 style={{ fontFamily: "Poppins" }}>Sign Up</h1>
           <Typography variant="subtitle1">
@@ -55,17 +71,19 @@ const SignupForm = () => {
               Sign in
             </Link>{" "}
           </Typography>
-          <TextField variant="standard" label="Your Name" type="email" />
-          <TextField variant="standard" label="Username" type="text" />
-          <TextField variant="standard" label="Email Address" type="email" />
-          <TextField variant="standard" label="Password" type="password" />
+          <TextField variant="standard" label="Your Name" type="text" name="name" value={user.name} onChange={handerInputChanges} />
+          <TextField variant="standard" label="Username" type="text" name="username" value={user.username} onChange={handerInputChanges} />
+          <TextField variant="standard" label="Email Address" name="email" type="email" value={user.email} onChange={handerInputChanges} />
+          <TextField variant="standard" label="Password" name="password" type="password" value={user.password} onChange={handerInputChanges} />
           <Box>
             <FormControlLabel
               label={<Term />}
               control={<Checkbox checked={acceptTnC} onChange={handleChange} />}
             />
           </Box>
-          <CustomButton wdth={"100%"}>Sign Up</CustomButton>
+          <div onClick={handleFormSubmit}>
+            <CustomButton wdth={"100%"} >Sign Up</CustomButton>
+          </div>
 
           {/* <Button variant='contained' type='submit' >Sign up</Button> */}
         </Stack>

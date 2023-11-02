@@ -30,6 +30,14 @@ const BrandData = [
     src: BrandLogo6,
     alt: "Brand Logo 6",
   },
+  {
+    src: BrandLogo6,
+    alt: "Brand Logo 6",
+  },
+  {
+    src: BrandLogo6,
+    alt: "Brand Logo 6",
+  },
 ];
 
 export default BrandData;
