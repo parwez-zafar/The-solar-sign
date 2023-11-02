@@ -16,18 +16,30 @@ const LinkStyle = {
 };
 
 const SignInForm = () => {
-  // const [user, setUser] = useState({
-  //     name: "",
-  //     email: "",
-  //     password: "",
-  //     username: ""
-  // })
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
 
-  const [acceptTnC, setAcceptTnC] = useState(false);
-  console.log(acceptTnC);
+  })
+  const [rememberMe, setRememberMe] = useState(false);
+  const handerInputChanges = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value })
+  }
+  // console.log(acceptTnC);
   const handleChange = () => {
-    setAcceptTnC(!acceptTnC);
+    setRememberMe(!rememberMe);
   };
+
+  // form submit
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    if (!user.email || !user.password || !rememberMe) {
+      alert('fill mandatory fields ');
+      return;
+    }
+    console.log("submitted");
+    alert('form submitted')
+  }
   return (
     <Stack
       // border='solid'
@@ -47,11 +59,8 @@ const SignInForm = () => {
           </Typography>
 
           <TextField
-            variant="standard"
-            label="your username or eamil address"
-            type="text"
-          />
-          <TextField variant="standard" label="Password" type="password" />
+            variant="standard" label="your username or eamil address" type="text" name="email" value={user.email} onChange={handerInputChanges} />
+          <TextField variant="standard" label="Password" type="password" name="password" value={user.password} onChange={handerInputChanges} />
           <Stack
             direction="row"
             alignItems="center"
@@ -61,7 +70,7 @@ const SignInForm = () => {
               <FormControlLabel
                 label="Remember me"
                 control={
-                  <Checkbox checked={acceptTnC} onChange={handleChange} />
+                  <Checkbox checked={rememberMe} onChange={handleChange} />
                 }
               />
             </Stack>
@@ -70,7 +79,9 @@ const SignInForm = () => {
             </Stack>
           </Stack>
           {/* <CustomButton>Sign in</CustomButton> */}
-          <CustomButton wdth={"100%"}>Sign In</CustomButton>
+          <div onClick={handleLoginSubmit}>
+            <CustomButton wdth={"100%"}>Sign In</CustomButton>
+          </div>
 
           {/* <Button variant='contained' type='submit' >Sign in</Button> */}
         </Stack>
