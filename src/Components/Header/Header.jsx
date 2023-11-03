@@ -16,7 +16,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -26,6 +26,7 @@ const pages = [
 ];
 
 const Header = () => {
+  const navigate = useNavigate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [showNavLinks, setShowNavLinks] = React.useState(null);
@@ -73,8 +74,8 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Sign Up</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
+      <MenuItem onClick={() => { navigate('/signup'); handleMenuClose() }}>Sign Up</MenuItem>
+      <MenuItem onClick={() => { navigate('/signin'); handleMenuClose() }}>Sign In</MenuItem>
     </Menu>
   );
 
