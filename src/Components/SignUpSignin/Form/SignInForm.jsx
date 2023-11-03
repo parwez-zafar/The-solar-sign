@@ -33,7 +33,7 @@ const SignInForm = () => {
   // form submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    if (!user.email || !user.password || !rememberMe) {
+    if (!user.email || !user.password) {
       alert('fill mandatory fields ');
       return;
     }

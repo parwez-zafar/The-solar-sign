@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Components/Header";
 import React from "react";
-import Footer from "../Components/footer";
+import Footer from "../Components/Footer";
 
 const Root = () => {
   return (

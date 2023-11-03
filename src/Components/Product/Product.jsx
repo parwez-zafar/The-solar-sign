@@ -1,12 +1,14 @@
 import Button from "@mui/material/Button";
-import pasteImage from "../../assets/images/Paste image.png";
-import { Box } from "@mui/material";
+import Rating from '@mui/material/Rating';
+import { Stack, Typography } from "@mui/material";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { styled } from '@mui/material/styles';
 
-const ProductCard = () => {
+const ProductCard = (props) => {
   const styles = {
     container: {
-      //   position: "relative",
-      //   width: "fit-content",
+      position: "relative",
+      width: "fit-content",
     },
     img: {
       width: "100%",
@@ -14,58 +16,106 @@ const ProductCard = () => {
     },
     btn: {
       position: "absolute",
-      top: "40%",
-      left: "45%",
+      top: "92%",
+      left: "50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: "#141718",
       color: "white",
-      fontSize: "8px",
+      fontSize: "12px",
       border: "none",
+      width: '76%',
+      height: '10%',
       cursor: "pointer",
+    },
+    newText: {
+      position: 'absolute',
+      top: '3%',
+      left: '5%',
+      backgroundColor: 'white',
+      fontSize: '90%',
+      fontWeight: "bold",
+      width: '20%',
+      height: '6%',
+      // textAlign: 'center',
+      fontFamily: 'Poppins',
+      borderRadius: '2px',
+      display: "flex",
+      justifyContent: 'center',
+      alignItem: 'center'
+    },
+    favorite: {
+      position: 'absolute',
+      top: '3%',
+      right: '5%',
+      width: '10%',
+      height: '5%',
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      padding: '2%',
     },
     ratingBox: {
       marginBottom: "8px",
+      fontWeight: 'bold',
+      marginTop: '3px'
+
+
     },
   };
-
+  const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+      color: 'black',
+    },
+  });
+  const { src, alt, description1, description2, price, ratingStar } = props
   return (
-    <Box sx={{ mb: 5 }}>
-      <Box style={styles.container}>
-        <img src={pasteImage} alt="pasteImage" style={styles.img} />
+    <Stack mb={5} width={265}>
+      <Stack style={styles.container}>
+        <img src={src} alt={alt} style={styles.img} />
+        <Typography style={styles.newText}>NEW</Typography>
+        <FavoriteBorderIcon style={styles.favorite} />
         <Button style={styles.btn}>Add to Cart</Button>
-      </Box>
-      <Box style={styles.ratingBox}>
-        <span>★</span>
-        <span>★</span>
-        <span>★</span>
-        <span>★</span>
-        <span>☆</span>
-      </Box>
-      <h3
-        style={{
-          fontFamily: "Inter",
-          fontSize: "1rem",
-          fontStyle: "normal",
-          fontWeight: 600,
-          lineHeight: "1.625rem",
-          width: "80%",
-        }}
-      >
-        Skullcandy - Crusher anc 2 <br />
-        wireless headphones
-      </h3>
-      <p
-        style={{
-          fontFamily: "Inter",
-          fontSize: "0.8rem",
-          fontStyle: "normal",
-          fontWeight: 600,
-          lineHeight: "1.3rem",
-        }}
-      >
-        $299.99
-      </p>
-    </Box>
+      </Stack>
+      <Stack spacing={1}>
+        <Stack style={styles.ratingBox}>
+
+          <StyledRating
+            name="customized-color"
+            readOnly
+            defaultValue={ratingStar}
+            precision={0.5} />
+
+
+        </Stack>
+        <h3
+          style={{
+            fontFamily: "Inter",
+            fontSize: "1rem",
+            fontStyle: "normal",
+            fontWeight: 600,
+            lineHeight: "1.625rem",
+            width: "80%",
+          }}
+        >
+          {/* Skullcandy - Crusher anc 2 <br />
+          wireless headphones */}
+          {description1}
+          <br />
+          {description2}
+        </h3>
+        <p
+          style={{
+            fontFamily: "Inter",
+            fontSize: "0.8rem",
+            fontStyle: "normal",
+            fontWeight: 600,
+            lineHeight: "1.3rem",
+          }}
+        >
+          {/* $299.99 */}
+          {price}
+        </p>
+      </Stack>
+    </Stack>
   );
 };
 
