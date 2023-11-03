@@ -181,6 +181,7 @@ const Header = () => {
             <Typography sx={{ display: "flex", flexGrow: 1 }}>
               {pages.map((page) => (
                 <NavLink
+                  activeClassName={({ isActive }) => (isActive ? "active" : "")}
                   key={page.name}
                   to={page.path}
                   style={{

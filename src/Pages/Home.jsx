@@ -1,14 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import InstagramImages from "../Data/InstagramImages";
 import BrandData from "../Data/BrandData";
 import ServicesCardData from "../Data/ServicesCardData";
 import CustomButton from "../Components/CustomButton";
 import heroImage from "../assets/images/Hero Image.png";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import ProductCard from "../Components/Product/Product";
 
 const Home = () => {
   const imageStyle = {
@@ -24,10 +25,10 @@ const Home = () => {
       setWindowSize(getWindowSize());
     }
 
-    window.addEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
+      window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
   // console.log("size ", windowSize);
@@ -36,7 +37,6 @@ const Home = () => {
     return { innerWidth, innerHeight };
   }
 
-
   let count = 6;
   if (windowSize.innerWidth <= 473) {
     count = 2;
@@ -44,10 +44,8 @@ const Home = () => {
     count = 3;
   else if (windowSize.innerWidth > 692 && windowSize.innerWidth < 1045)
     count = 4;
-  else
-    count = 6;
+  else count = 6;
   return (
-
     <React.Fragment>
       {/* main hero section  */}
       <Box
@@ -122,17 +120,6 @@ const Home = () => {
       </Box>
       {/* brands section  */}
       <Container>
-        {/* {BrandData.map((item, i) => (
-          <img
-            key={i}
-            src={item.src}
-            alt={item.alt}
-            style={{
-              width: "auto",
-              margin: "10px 10px",
-            }}
-          />
-        ))} */}
         <Swiper
           slidesPerView={count}
           spaceBetween={30}
@@ -155,12 +142,72 @@ const Home = () => {
                   }}
                 />
               </SwiperSlide>
-
             </>
           ))}
         </Swiper>
       </Container>
-      {/* services card section  */}
+      <Container>
+        <h3
+          style={{
+            fontFamily: "Poppins",
+            fontSize: "2.5rem",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "2.75rem",
+            letterSpacing: "-0.025rem",
+          }}
+        >
+          New Arrivals
+        </h3>
+        <Swiper
+          slidesPerView={count}
+          spaceBetween={60}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+            {/* </Box> */}
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+          <SwiperSlide>
+            {/* <Box sx={{ display: "flex" }}> */}
+            <ProductCard />
+          </SwiperSlide>
+        </Swiper>
+      </Container>
+      {/* services card section */}
       <Container>
         <Grid
           container
@@ -283,10 +330,8 @@ const Home = () => {
             ))}
           </Grid>
         </Box>
-
       </Container>
-
-    </React.Fragment >
+    </React.Fragment>
   );
 };
 
