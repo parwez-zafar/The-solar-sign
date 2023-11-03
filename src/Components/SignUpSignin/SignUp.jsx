@@ -5,7 +5,7 @@ import SignupForm from "./Form/SignupForm.jsx";
 const SignUp = () => {
   const imageStyle = {
     maxWidth: "100%",
-    height: '100%',
+    height: "100%",
     display: "block",
   };
   return (
@@ -15,7 +15,7 @@ const SignUp = () => {
           <div
             style={{
               backgroundColor: "#F3F5F7",
-              height: "100%", // Set the height to 100% to prevent overflow
+              height: "100%",
               width: "100%",
               display: "flex",
               flexDirection: "column",
@@ -32,12 +32,8 @@ const SignUp = () => {
               {" "}
               3legant.
             </Typography>
-            <div style={{ height: '80vh' }}>
-              <img
-                style={imageStyle}
-                src={signup1}
-                alt="signup1"
-              />
+            <div style={{ height: "80vh" }}>
+              <img style={imageStyle} src={signup1} alt="signup1" />
             </div>
           </div>
         </Grid>
