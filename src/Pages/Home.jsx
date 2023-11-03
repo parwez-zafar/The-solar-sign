@@ -10,6 +10,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import ProductCard from "../Components/Product/Product";
+import ProductData from "../Data/ProductData/ProductData";
+import Product from "../Components/Product";
 
 const Home = () => {
   const imageStyle = {
@@ -38,13 +40,13 @@ const Home = () => {
   }
 
   let count = 6;
+  let ProductCount = 4;
   if (windowSize.innerWidth <= 473) {
     count = 2;
-  } else if (windowSize.innerWidth > 473 && windowSize.innerWidth <= 692)
-    count = 3;
-  else if (windowSize.innerWidth > 692 && windowSize.innerWidth < 1045)
-    count = 4;
-  else count = 6;
+    ProductCount = 1;
+  } else if (windowSize.innerWidth > 473 && windowSize.innerWidth <= 692) { count = 3; ProductCount = 2; }
+  else if (windowSize.innerWidth > 692 && windowSize.innerWidth < 1045) { count = 4; ProductCount = 3 }
+  else { count = 6; ProductCount = 4 }
   return (
     <React.Fragment>
       {/* main hero section  */}
@@ -160,55 +162,43 @@ const Home = () => {
           New Arrivals
         </h3>
         <Swiper
-          slidesPerView={count}
-          spaceBetween={60}
+          slidesPerView={ProductCount}
+          spaceBetween={0}
           pagination={{
             clickable: true,
           }}
           modules={[Pagination]}
           className="mySwiper"
         >
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-            {/* </Box> */}
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
-          <SwiperSlide>
-            {/* <Box sx={{ display: "flex" }}> */}
-            <ProductCard />
-          </SwiperSlide>
+          {ProductData.map((item, i) => (
+            <>
+              <SwiperSlide>
+                <Product
+                  key={i}
+                  src={item.src}
+                  alt={item.alt}
+                  description1={item.description1}
+                  description2={item.description2}
+                  price={item.price}
+                  ratingStar={item.ratingStar}
+                  style={{
+                    width: "auto",
+                    margin: "10px 10px",
+                  }}
+                />
+              </SwiperSlide>
+            </>
+          ))}
+
+
+
         </Swiper>
       </Container>
+
+
+
       {/* services card section */}
-      <Container>
+      <Container style={{ marginTop: '9px' }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
