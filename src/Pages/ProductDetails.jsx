@@ -1,8 +1,28 @@
-import { Divider, Grid, Rating, Typography } from "@mui/material";
+import {
+  Button,
+  ButtonGroup,
+  Divider,
+  Grid,
+  Rating,
+  Typography,
+} from "@mui/material";
 import { Box, Container } from "@mui/system";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { useState } from "react";
+import CustomButton from "../Components/CustomButton";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function ProductDetails() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
   return (
     <div>
       <Container>
@@ -31,7 +51,6 @@ export default function ProductDetails() {
                   style={{
                     fontFamily: "Poppins",
                     fontWeight: "bold",
-
                     marginBottom: "1rem",
                   }}
                 >
@@ -56,7 +75,6 @@ export default function ProductDetails() {
                     style={{
                       fontFamily: "Poppins",
                       fontWeight: "bold",
-
                       marginRight: "1rem",
                     }}
                   >
@@ -64,11 +82,10 @@ export default function ProductDetails() {
                   </Typography>
                   <Typography
                     // variant="p"
-
                     style={{
                       fontFamily: "Inter",
                       color: "#6C7275",
-                      //   fontSize: "1rem",
+                      textDecoration: "line-through",
                     }}
                   >
                     $400.00
@@ -209,6 +226,55 @@ export default function ProductDetails() {
                   </Typography>
                   <ChevronRightIcon style={{ color: "#6C7275" }} />
                 </Box>
+              </Box>
+
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <ButtonGroup variant="outlined" sx={{ background: "#F5F5F5" }}>
+                  <Button
+                    onClick={decrement}
+                    sx={{
+                      width: "100%",
+                      border: "none",
+                      color: "#141718",
+                      "&:hover": {
+                        border: "1px solid #141718",
+                      },
+                      fontFamily: "Inter",
+                    }}
+                  >
+                    -
+                  </Button>
+                  <Box sx={{ p: 2, border: "none", fontFamily: "Inter" }}>
+                    {count}
+                  </Box>
+                  <Button
+                    onClick={increment}
+                    sx={{
+                      border: "none",
+                      color: "#141718",
+                      "&:hover": {
+                        border: "1px solid #141718",
+                      },
+                      fontFamily: "Inter",
+                    }}
+                  >
+                    +
+                  </Button>
+                </ButtonGroup>
+                <Button
+                  sx={{
+                    width: "100%",
+                    border: "1px solid #141718",
+                    color: "#141718",
+                    fontFamily: "Inter",
+                  }}
+                  startIcon={<FavoriteBorderIcon />}
+                >
+                  WishList
+                </Button>
+              </Box>
+              <Box sx={{ display: "flex", p: 2, fontFamily: "Inter" }}>
+                <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
             </Grid>
           </Grid>
