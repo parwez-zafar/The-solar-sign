@@ -10,7 +10,7 @@ const ProductData = [
         description1: `Skullcandy - Crusher anc 2`,
         description2: `wireless headphones`,
         price: "$299.99",
-        ratingStar: 5
+        ratingStar: 3
     },
     {
         src: beats_studio,

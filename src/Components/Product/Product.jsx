@@ -2,7 +2,6 @@ import Button from "@mui/material/Button";
 import Rating from '@mui/material/Rating';
 import { Stack, Typography } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { styled } from '@mui/material/styles';
 
 const ProductCard = (props) => {
   const styles = {
@@ -61,11 +60,7 @@ const ProductCard = (props) => {
 
     },
   };
-  const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-      color: 'black',
-    },
-  });
+
   const { src, alt, description1, description2, price, ratingStar } = props
   return (
     <Stack mb={5} width={265}>
@@ -78,11 +73,13 @@ const ProductCard = (props) => {
       <Stack spacing={1}>
         <Stack style={styles.ratingBox}>
 
-          <StyledRating
+          <Rating
             name="customized-color"
             readOnly
             defaultValue={ratingStar}
-            precision={0.5} />
+            precision={0.5}
+            sx={{ color: 'black' }}
+          />
 
 
         </Stack>

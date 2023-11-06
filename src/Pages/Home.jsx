@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-import ProductCard from "../Components/Product/Product";
+// import ProductCard from "../Components/Product/Product";
 import ProductData from "../Data/ProductData/ProductData";
 import Product from "../Components/Product";
 
@@ -132,19 +132,20 @@ const Home = () => {
           className="mySwiper"
         >
           {BrandData.map((item, i) => (
-            <>
-              <SwiperSlide>
-                <img
-                  key={i}
-                  src={item.src}
-                  alt={item.alt}
-                  style={{
-                    width: "auto",
-                    margin: "10px 10px",
-                  }}
-                />
-              </SwiperSlide>
-            </>
+
+            <SwiperSlide
+              key={i}
+            >
+              <img
+                src={item.src}
+                alt={item.alt}
+                style={{
+                  width: "auto",
+                  margin: "10px 10px",
+                }}
+              />
+            </SwiperSlide>
+
           ))}
         </Swiper>
       </Container>
@@ -171,23 +172,25 @@ const Home = () => {
           className="mySwiper"
         >
           {ProductData.map((item, i) => (
-            <>
-              <SwiperSlide>
-                <Product
-                  key={i}
-                  src={item.src}
-                  alt={item.alt}
-                  description1={item.description1}
-                  description2={item.description2}
-                  price={item.price}
-                  ratingStar={item.ratingStar}
-                  style={{
-                    width: "auto",
-                    margin: "10px 10px",
-                  }}
-                />
-              </SwiperSlide>
-            </>
+
+            <SwiperSlide
+              key={i}
+            >
+              <Product
+
+                src={item.src}
+                alt={item.alt}
+                description1={item.description1}
+                description2={item.description2}
+                price={item.price}
+                ratingStar={item.ratingStar}
+                style={{
+                  width: "auto",
+                  margin: "10px 10px",
+                }}
+              />
+            </SwiperSlide>
+
           ))}
 
 

@@ -82,7 +82,7 @@ const SignupForm = () => {
             />
           </Box>
           <div onClick={handleFormSubmit}>
-            <CustomButton wdth={"100%"} >Sign Up</CustomButton>
+            <CustomButton type='button' wdth={"100%"} >Sign Up</CustomButton>
           </div>
 
           {/* <Button variant='contained' type='submit' >Sign up</Button> */}
