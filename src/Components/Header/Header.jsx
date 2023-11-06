@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  AppBar,
   Box,
   Drawer,
   Toolbar,
@@ -26,7 +25,7 @@ const pages = [
 ];
 
 const Header = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [showNavLinks, setShowNavLinks] = React.useState(null);
@@ -74,8 +73,22 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => { navigate('/signup'); handleMenuClose() }}>Sign Up</MenuItem>
-      <MenuItem onClick={() => { navigate('/signin'); handleMenuClose() }}>Sign In</MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("/signup");
+          handleMenuClose();
+        }}
+      >
+        Sign Up
+      </MenuItem>
+      <MenuItem
+        onClick={() => {
+          navigate("/signin");
+          handleMenuClose();
+        }}
+      >
+        Sign In
+      </MenuItem>
     </Menu>
   );
 
@@ -154,7 +167,7 @@ const Header = () => {
     <Container>
       <Box sx={{ flexGrow: 1 }}>
         {/* <AppBar position="static" sx={{ background: "#fff" }}> */}
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar disableGutters={true} sx={{ justifyContent: "space-between" }}>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
