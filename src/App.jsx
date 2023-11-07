@@ -12,6 +12,7 @@ import SignUp from "./Components/SignUpSignin/SignUp";
 import React from "react";
 import AuthForm from "./Pages/AuthForm";
 import ProductDetails from "./Pages/ProductDetails";
+import Account from "./Pages/account";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
         <Route path="product-details" element={<ProductDetails />} />
+        <Route path="account" element={<Account />} />
 
         <Route path="authform" element={<AuthForm />} />
         <Route path="signin" element={<SignIn />} />
