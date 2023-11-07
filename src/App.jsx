@@ -18,7 +18,7 @@ const router = createBrowserRouter(
     <React.Fragment>
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
-        <Route path="product-detailes" element={<ProductDetails />} />
+        <Route path="product-details" element={<ProductDetails />} />
 
         <Route path="authform" element={<AuthForm />} />
         <Route path="signin" element={<SignIn />} />

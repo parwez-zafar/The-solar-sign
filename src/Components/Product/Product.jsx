@@ -1,18 +1,10 @@
 import Button from "@mui/material/Button";
-import Rating from "@mui/material/Rating";
+import Rating from '@mui/material/Rating';
 import { Stack, Typography } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { styled } from "@mui/material/styles";
-import PropTypes from "prop-types";
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from "react-router-dom";
 
-const ProductCard = ({
-  src,
-  alt,
-  description1,
-  description2,
-  price,
-  ratingStar,
-}) => {
+const ProductCard = (props) => {
   const styles = {
     container: {
       position: "relative",
@@ -31,46 +23,47 @@ const ProductCard = ({
       color: "white",
       fontSize: "12px",
       border: "none",
-      width: "76%",
-      height: "10%",
+      width: '76%',
+      height: '10%',
       cursor: "pointer",
     },
     newText: {
-      position: "absolute",
-      top: "3%",
-      left: "5%",
-      backgroundColor: "white",
-      fontSize: "90%",
+      position: 'absolute',
+      top: '3%',
+      left: '5%',
+      backgroundColor: 'white',
+      fontSize: '90%',
       fontWeight: "bold",
-      width: "20%",
-      height: "6%",
-      fontFamily: "Poppins",
-      borderRadius: "2px",
+      width: '20%',
+      height: '6%',
+      // textAlign: 'center',
+      fontFamily: 'Poppins',
+      borderRadius: '2px',
       display: "flex",
-      justifyContent: "center",
-      alignItem: "center",
+      justifyContent: 'center',
+      alignItem: 'center',
+      color: 'black'
     },
     favorite: {
-      position: "absolute",
-      top: "3%",
-      right: "5%",
-      width: "10%",
-      height: "5%",
-      borderRadius: "50%",
-      backgroundColor: "white",
-      padding: "2%",
+      position: 'absolute',
+      top: '3%',
+      right: '5%',
+      width: '10%',
+      height: '5%',
+      borderRadius: '50%',
+      backgroundColor: 'white',
+      padding: '2%'
     },
     ratingBox: {
       marginBottom: "8px",
-      fontWeight: "bold",
-      marginTop: "3px",
+      fontWeight: 'bold',
+      marginTop: '3px'
+
+
     },
   };
-  const StyledRating = styled(Rating)({
-    "& .MuiRating-iconFilled": {
-      color: "black",
-    },
-  });
+
+  const { src, alt, description1, description2, price, ratingStar } = props
   return (
     <Stack mb={5} width={265}>
       <Stack style={styles.container}>
@@ -79,52 +72,54 @@ const ProductCard = ({
         <FavoriteBorderIcon style={styles.favorite} />
         <Button style={styles.btn}>Add to Cart</Button>
       </Stack>
-      <Stack spacing={1}>
-        <Stack style={styles.ratingBox}>
-          <StyledRating
-            name="customized-color"
-            readOnly
-            defaultValue={ratingStar}
-            precision={0.5}
-          />
+      <Link to='/product-detailes' style={{ textDecoration: 'none' }}>
+        <Stack spacing={1}>
+          <Stack style={styles.ratingBox}>
+
+            <Rating
+              name="customized-color"
+              readOnly
+              defaultValue={ratingStar}
+              precision={0.5}
+              sx={{ color: 'black' }}
+            />
+
+
+          </Stack>
+          <h3
+            style={{
+              fontFamily: "Inter",
+              fontSize: "1rem",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "1.625rem",
+              width: "80%",
+              color: 'black'
+            }}
+          >
+            {/* Skullcandy - Crusher anc 2 <br />
+      wireless headphones */}
+            {description1}
+            <br />
+            {description2}
+          </h3>
+          <p
+            style={{
+              fontFamily: "Inter",
+              fontSize: "0.8rem",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "1.3rem",
+              color: 'black'
+            }}
+          >
+            {/* $299.99 */}
+            {price}
+          </p>
         </Stack>
-        <h3
-          style={{
-            fontFamily: "Inter",
-            fontSize: "1rem",
-            fontStyle: "normal",
-            fontWeight: 600,
-            lineHeight: "1.625rem",
-            width: "80%",
-          }}
-        >
-          {description1}
-          <br />
-          {description2}
-        </h3>
-        <p
-          style={{
-            fontFamily: "Inter",
-            fontSize: "0.8rem",
-            fontStyle: "normal",
-            fontWeight: 600,
-            lineHeight: "1.3rem",
-          }}
-        >
-          {price}
-        </p>
-      </Stack>
+      </Link>
     </Stack>
   );
-};
-
-ProductCard.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  description1: PropTypes.node.isRequired,
-  description2: PropTypes.node.isRequired,
-  price: PropTypes.node.isRequired,
-  ratingStar: PropTypes.node.isRequired,
 };
 
 export default ProductCard;
