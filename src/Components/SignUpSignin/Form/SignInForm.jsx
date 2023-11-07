@@ -1,13 +1,18 @@
 import { useState } from "react";
 import {
   Stack,
-  TextField,
   Typography,
   FormControlLabel,
   Checkbox,
+  FormControl,
+  Input,
+  InputLabel,
+  IconButton,
+  InputAdornment,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import CustomButton from "../../../Components/CustomButton";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const LinkStyle = {
   color: "black",
@@ -16,6 +21,8 @@ const LinkStyle = {
 };
 
 const SignInForm = () => {
+
+  const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: ""
@@ -25,10 +32,12 @@ const SignInForm = () => {
   const handerInputChanges = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
   }
-  // console.log(acceptTnC);
   const handleChange = () => {
     setRememberMe(!rememberMe);
   };
+
+
+
 
   // form submit
   const handleLoginSubmit = (e) => {
@@ -40,6 +49,8 @@ const SignInForm = () => {
     console.log("submitted");
     alert('form submitted')
   }
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   return (
     <Stack
       // border='solid'
@@ -58,9 +69,38 @@ const SignInForm = () => {
             </Link>{" "}
           </Typography>
 
-          <TextField
-            variant="standard" label="your username or eamil address" type="text" name="email" value={user.email} onChange={handerInputChanges} />
-          <TextField variant="standard" label="Password" type="password" name="password" value={user.password} onChange={handerInputChanges} />
+
+
+
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Email Address</InputLabel>
+            <Input
+              name="email" type="email" value={user.email} onChange={handerInputChanges}
+            />
+          </FormControl>
+
+
+
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={user.password}
+              onChange={handerInputChanges}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
           <Stack
             direction="row"
             alignItems="center"
@@ -85,8 +125,8 @@ const SignInForm = () => {
 
           {/* <Button variant='contained' type='submit' >Sign in</Button> */}
         </Stack>
-      </form>
-    </Stack>
+      </form >
+    </Stack >
   );
 };
 

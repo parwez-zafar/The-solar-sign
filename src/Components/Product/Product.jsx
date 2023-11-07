@@ -72,7 +72,7 @@ const ProductCard = (props) => {
         <FavoriteBorderIcon style={styles.favorite} />
         <Button style={styles.btn}>Add to Cart</Button>
       </Stack>
-      <Link to='/product-detailes' style={{ textDecoration: 'none' }}>
+      <Link to='/product-details' style={{ textDecoration: 'none' }}>
         <Stack spacing={1}>
           <Stack style={styles.ratingBox}>
 

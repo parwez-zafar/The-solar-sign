@@ -149,7 +149,7 @@ export default function ProductDetails() {
               </Box>
 
               <Box
-                display={"flex"}
+                display={{ xs: 'none', sm: 'flex' }}
                 alignItems={"center"}
                 justifyContent={"space-between"}
                 mb={5}

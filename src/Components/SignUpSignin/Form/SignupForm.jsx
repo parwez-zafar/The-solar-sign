@@ -1,14 +1,19 @@
 import { useState } from "react";
 import {
   Stack,
-  TextField,
   Typography,
   Box,
   FormControlLabel,
   Checkbox,
+  FormControl,
+  InputLabel,
+  Input,
+  InputAdornment,
+  IconButton,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import CustomButton from "../../../Components/CustomButton";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const LinkStyle = {
   color: "black",
@@ -17,6 +22,7 @@ const LinkStyle = {
 };
 
 const SignupForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     name: "",
     username: "",
@@ -45,6 +51,9 @@ const SignupForm = () => {
     console.log("submitted");
     alert('form submitted')
   }
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
   const Term = () => {
     return (
       <>
@@ -71,10 +80,53 @@ const SignupForm = () => {
               Sign in
             </Link>{" "}
           </Typography>
-          <TextField variant="standard" label="Your Name" type="text" name="name" value={user.name} onChange={handerInputChanges} />
-          <TextField variant="standard" label="Username" type="text" name="username" value={user.username} onChange={handerInputChanges} />
-          <TextField variant="standard" label="Email Address" name="email" type="email" value={user.email} onChange={handerInputChanges} />
-          <TextField variant="standard" label="Password" name="password" type="password" value={user.password} onChange={handerInputChanges} />
+          {/* <TextField variant="standard" label="Your Name" type="text" name="name" value={user.name} onChange={handerInputChanges} /> */}
+          {/* <TextField variant="standard" label="Username" type="text" name="username" value={user.username} onChange={handerInputChanges} /> */}
+          {/* <TextField variant="standard" label="Email Address" name="email" type="email" value={user.email} onChange={handerInputChanges} /> */}
+
+
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Your name</InputLabel>
+            <Input
+              type="text" name="name" value={user.name} onChange={handerInputChanges}
+            />
+          </FormControl>
+
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Username</InputLabel>
+            <Input
+              type="text" name="username" value={user.username} onChange={handerInputChanges}
+            />
+          </FormControl>
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Email Address</InputLabel>
+            <Input
+              name="email" type="email" value={user.email} onChange={handerInputChanges}
+            />
+          </FormControl>
+
+
+
+          <FormControl variant="standard">
+            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+            <Input
+              id="standard-adornment-password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              value={user.password}
+              onChange={handerInputChanges}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
           <Box>
             <FormControlLabel
               label={<Term />}
@@ -87,8 +139,8 @@ const SignupForm = () => {
 
           {/* <Button variant='contained' type='submit' >Sign up</Button> */}
         </Stack>
-      </form>
-    </Stack>
+      </form >
+    </Stack >
   );
 };
 

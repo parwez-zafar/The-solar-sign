@@ -16,6 +16,7 @@ import {
 import { Box, Container } from "@mui/system";
 import avatar from "../../src/assets/images/Avatar.png";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import AccountDetails from '../Components/AccountDetails/AccountDetails.jsx'
 import { useState } from "react";
 const activeStyle = {
   color: "black",
@@ -188,7 +189,8 @@ export default function Account() {
             <Grid item sm={12} xs={12} md={8} lg={8} xl={8}>
               {activeTab === "Account" && (
                 <Box>
-                  Account section goes her create an component for this{" "}
+                  {/* Account section goes her create an component for this{" "} */}
+                  <AccountDetails />
                 </Box>
               )}
               {activeTab === "Address" && (
