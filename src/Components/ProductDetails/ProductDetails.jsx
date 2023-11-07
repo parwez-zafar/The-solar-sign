@@ -9,30 +9,27 @@ import {
 import { Box, Container } from "@mui/system";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
-import CustomButton from "../Components/CustomButton";
+import CustomButton from "../CustomButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import src1 from "../assets/images/Tray Table/image1.png";
-import src2 from "../assets/images/Tray Table/image2.png";
-import src3 from "../assets/images/Tray Table/image3.png";
-import src4 from "../assets/images/Tray Table/image4.png";
+import src1 from "../../assets/images/Tray Table/image1.png";
+import src2 from "../../assets/images/Tray Table/image2.png";
+import src3 from "../../assets/images/Tray Table/image3.png";
+import src4 from "../../assets/images/Tray Table/image4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-import tableBlack from "../assets/images/table black.png";
-import tableWhite from "../assets/images/table white.png";
-import tableRed from "../assets/images/table red.png";
-import tableGrey from "../assets/images/table grey.png";
+import tableBlack from "../../assets/images/table black.png";
+import tableWhite from "../../assets/images/table white.png";
+import tableRed from "../../assets/images/table red.png";
+import tableGrey from "../../assets/images/table grey.png";
 
 const styles = {
   img: {
     width: "100%",
     height: "auto",
-    // height: '100vh'
   },
   anotherImg: {
     width: "32%",
-
-    // height: 'auto'
   },
   linkStyle: {
     position: "relative",
@@ -55,7 +52,6 @@ const styles = {
     position: "absolute",
     top: "50%",
     right: "6%",
-    // left: '6%'
   },
   newText: {
     position: "absolute",

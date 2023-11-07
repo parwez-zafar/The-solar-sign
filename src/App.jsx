@@ -11,7 +11,7 @@ import SignIn from "./Components/SignUpSignin/SignIn";
 import SignUp from "./Components/SignUpSignin/SignUp";
 import React from "react";
 import AuthForm from "./Pages/AuthForm";
-import ProductDetails from "./Pages/ProductDetails";
+import ProductDetails from "./Components/ProductDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
