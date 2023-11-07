@@ -11,6 +11,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import CustomButton from "../Components/CustomButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import tableBlack from "../assets/images/table black.png";
+import tableGrey from "../assets/images/table grey.png";
+import tableRed from "../assets/images/table red.png";
+import tableWhite from "../assets/images/table white.png";
 
 export default function ProductDetails() {
   const [count, setCount] = useState(0);
@@ -226,6 +230,12 @@ export default function ProductDetails() {
                   </Typography>
                   <ChevronRightIcon style={{ color: "#6C7275" }} />
                 </Box>
+                <Box>
+                  <img src={tableBlack} alt={tableBlack} />
+                  <img src={tableGrey} alt={tableGrey} />
+                  <img src={tableRed} alt={tableRed} />
+                  <img src={tableWhite} alt={tableWhite} />
+                </Box>
               </Box>
 
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -273,7 +283,7 @@ export default function ProductDetails() {
                   WishList
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", p: 2, fontFamily: "Inter" }}>
+              <Box sx={{ display: "flex", my: 2, fontFamily: "Inter" }}>
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
             </Grid>
