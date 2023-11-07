@@ -425,7 +425,7 @@ export default function ProductDetails() {
                   WishList
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", p: 2, fontFamily: "Inter" }}>
+              <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }}>
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
             </Grid>
