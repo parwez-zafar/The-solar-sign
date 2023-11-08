@@ -101,7 +101,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <div>
+    <>
       <Container>
         {" "}
         <Typography variant="body2" mb={1}>
@@ -149,7 +149,7 @@ export default function ProductDetails() {
               </Box>
 
               <Box
-                display={{ xs: 'none', sm: 'flex' }}
+                display={{ xs: "none", sm: "flex" }}
                 alignItems={"center"}
                 justifyContent={"space-between"}
                 mb={5}
@@ -428,6 +428,6 @@ export default function ProductDetails() {
           </Grid>
         </Box>
       </Container>
-    </div>
+    </>
   );
 }
