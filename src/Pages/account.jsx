@@ -33,7 +33,6 @@ const inActive = {
 };
 
 const Account = () => {
-  // style={activeTab === "userAddress" ? activeStyle : inActive}
   const [activeTab, setActiveTab] = useState("Account");
   const matches = useMediaQuery("(min-width:900px)");
   const handleChange = (event) => {
