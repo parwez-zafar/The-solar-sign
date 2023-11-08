@@ -107,12 +107,7 @@ export default function Account() {
               {!matches && (
                 <Box>
                   <FormControl fullWidth>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={activeTab}
-                      onChange={handleChange}
-                    >
+                    <Select value={activeTab} onChange={handleChange}>
                       <MenuItem value={"Account"}>Account</MenuItem>
                       <MenuItem value={"Address"}>Address</MenuItem>
                       <MenuItem value={"Orders"}>Orders</MenuItem>
@@ -183,21 +178,27 @@ export default function Account() {
           <Grid item sm={12} xs={12} md={8} lg={8} xl={8}>
             {activeTab === "Account" && (
               <Box>
-                <AccountDetails a />
+                <AccountDetails />
               </Box>
             )}
             {activeTab === "Address" && (
               <Box sx={{ display: "flex" }}>
-                <AccountAddress
-                  address1="Sofia Havertz"
-                  phoneNumber="(+1) 234 567 890"
-                  address2="345 Long Island, New York, United States"
-                />
-                <AccountAddress
-                  address1="Sofia Havertz"
-                  phoneNumber="(+1) 234 567 890"
-                  address2="345 Long Island, New York, United States"
-                />
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={6}>
+                    <AccountAddress
+                      address1="Sofia Havertz"
+                      phoneNumber="(+1) 234 567 890"
+                      address2="345 Long Island, New York, United States"
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <AccountAddress
+                      address1="Sofia Havertz"
+                      phoneNumber="(+1) 234 567 890"
+                      address2="345 Long Island, New York, United States"
+                    />
+                  </Grid>
+                </Grid>
               </Box>
             )}
             {activeTab === "Orders" && (

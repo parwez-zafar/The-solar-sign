@@ -12,7 +12,7 @@ import SignUp from "./Components/SignUpSignin/SignUp";
 import React from "react";
 import AuthForm from "./Pages/AuthForm";
 import ProductDetails from "./Components/ProductDetails";
-import Account from "./Pages/account";
+import Account from "./Pages/Account";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

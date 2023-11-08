@@ -50,6 +50,7 @@ const AccountAddress = ({ address1, phoneNumber, address2 }) => {
             "&:hover": {
               textDecoration: "underline",
             },
+            cursor: "pointer",
           }}
         >
           {EditIcon}
