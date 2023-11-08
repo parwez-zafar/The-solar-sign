@@ -16,9 +16,11 @@ import {
 import { Box, Container } from "@mui/system";
 import avatar from "../../assets/images/Avatar.png";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import AccountDetails from "../../Components/AccountDetails/AccountDetails.jsx";
+import AccountDetails from "../../Components/AccountDetails/AccountDetails";
+import OrderHistory from "../../Components/OrderHistory/OrderHistory";
 import { useState } from "react";
 import AccountAddress from "../../Components/AccountAddress/AccountAddress.jsx";
+
 
 const activeStyle = {
   color: "black",
@@ -203,7 +205,10 @@ const Account = () => {
               </Box>
             )}
             {activeTab === "Orders" && (
-              <Box>orders section goes her create an component for this </Box>
+              <Box>
+                <OrderHistory />
+
+              </Box>
             )}
             {activeTab === "Wishlist" && (
               <Box>wishlist section goes her create an component for this </Box>
