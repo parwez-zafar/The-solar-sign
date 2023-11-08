@@ -21,34 +21,29 @@ const LinkStyle = {
 };
 
 const SignInForm = () => {
-
   const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     email: "",
-    password: ""
-
-  })
+    password: "",
+  });
   const [rememberMe, setRememberMe] = useState(false);
   const handerInputChanges = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value })
-  }
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
   const handleChange = () => {
     setRememberMe(!rememberMe);
   };
-
-
-
 
   // form submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     if (!user.email || !user.password) {
-      alert('fill mandatory fields ');
+      alert("fill mandatory fields ");
       return;
     }
     console.log("submitted");
-    alert('form submitted')
-  }
+    alert("form submitted");
+  };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (
@@ -58,34 +53,40 @@ const SignInForm = () => {
       justifyContent={{ xs: "flex-start", sm: "center" }}
       alignItems="center"
     >
-      <form noValidate>
+      <form>
         <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 300, sm: 400 }}>
           <h1 style={{ fontFamily: "Poppins" }}>Sign In</h1>
           <Typography variant="subtitle1">
             {" "}
             Don&apos;t have an account?{" "}
-            <Link to='/signup' style={{ color: "#38CB89", textDecoration: "none" }}>
+            <Link
+              to="/signup"
+              style={{ color: "#38CB89", textDecoration: "none" }}
+            >
               Sign Up
             </Link>{" "}
           </Typography>
 
-
-
-
           <FormControl variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Email Address</InputLabel>
+            <InputLabel htmlFor="standard-adornment-password">
+              Email Address
+            </InputLabel>
             <Input
-              name="email" type="email" value={user.email} onChange={handerInputChanges}
+              name="email"
+              type="email"
+              required
+              value={user.email}
+              onChange={handerInputChanges}
             />
           </FormControl>
 
-
-
           <FormControl variant="standard">
-            <InputLabel htmlFor="standard-adornment-password">Password</InputLabel>
+            <InputLabel htmlFor="standard-adornment-password">
+              Password
+            </InputLabel>
             <Input
               id="standard-adornment-password"
-              type={showPassword ? 'text' : 'password'}
+              type={showPassword ? "text" : "password"}
               name="password"
               value={user.password}
               onChange={handerInputChanges}
@@ -120,13 +121,15 @@ const SignInForm = () => {
           </Stack>
           {/* <CustomButton>Sign in</CustomButton> */}
           <div onClick={handleLoginSubmit}>
-            <CustomButton wdth={"100%"}>Sign In</CustomButton>
+            <CustomButton type="submit" wdth={"100%"}>
+              Sign In
+            </CustomButton>
           </div>
 
           {/* <Button variant='contained' type='submit' >Sign in</Button> */}
         </Stack>
-      </form >
-    </Stack >
+      </form>
+    </Stack>
   );
 };
 
