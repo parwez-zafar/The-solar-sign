@@ -33,7 +33,8 @@ const AccountDetails = () => {
   const handerInputChanges = (e) => {
     setAccountDetails({ ...accountDetails, [e.target.name]: e.target.value });
   };
-  const handleInputSubmit = () => {
+  const handleInputSubmit = (e) => {
+    e.preventDefault();
     if (
       !accountDetails.firstname ||
       !accountDetails.lastname ||
@@ -47,7 +48,7 @@ const AccountDetails = () => {
   };
   return (
     <Container>
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" onSubmit={handleInputSubmit}>
         <Stack spacing={{ xs: 2, sm: 1 }} width={{ xs: 300, sm: 700 }}>
           <Typography
             variant="h4"
@@ -206,12 +207,8 @@ const AccountDetails = () => {
             />
           </FormControl>
 
-          <Box
-            width={{ xs: "60%", sm: "40%" }}
-            pt={1}
-            onClick={handleInputSubmit}
-          >
-            <CustomButton type="button" wdth="100%">
+          <Box width={{ xs: "60%", sm: "40%" }} pt={1}>
+            <CustomButton type="submit" wdth="100%">
               Save Changes
             </CustomButton>
           </Box>

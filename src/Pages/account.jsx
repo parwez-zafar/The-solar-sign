@@ -19,6 +19,7 @@ import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import AccountDetails from "../Components/AccountDetails/AccountDetails.jsx";
 import { useState } from "react";
 import AccountAddress from "../Components/AccountAddress/AccountAddress.jsx";
+
 const activeStyle = {
   color: "black",
   fontWeight: "bold",
@@ -30,7 +31,8 @@ const inActive = {
   color: "#6C7275",
   fontWeight: "bold",
 };
-export default function Account() {
+
+const Account = () => {
   // style={activeTab === "userAddress" ? activeStyle : inActive}
   const [activeTab, setActiveTab] = useState("Account");
   const matches = useMediaQuery("(min-width:900px)");
@@ -212,4 +214,6 @@ export default function Account() {
       </Box>
     </Container>
   );
-}
+};
+
+export default Account;
