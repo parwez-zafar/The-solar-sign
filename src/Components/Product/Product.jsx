@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
-import Rating from '@mui/material/Rating';
+import Rating from "@mui/material/Rating";
 import { Stack, Typography } from "@mui/material";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 
 const ProductCard = (props) => {
@@ -23,47 +23,45 @@ const ProductCard = (props) => {
       color: "white",
       fontSize: "12px",
       border: "none",
-      width: '76%',
-      height: '10%',
+      width: "76%",
+      height: "10%",
       cursor: "pointer",
     },
     newText: {
-      position: 'absolute',
-      top: '3%',
-      left: '5%',
-      backgroundColor: 'white',
-      fontSize: '90%',
+      position: "absolute",
+      top: "3%",
+      left: "5%",
+      backgroundColor: "white",
+      fontSize: "90%",
       fontWeight: "bold",
-      width: '20%',
-      height: '6%',
+      width: "20%",
+      height: "6%",
       // textAlign: 'center',
-      fontFamily: 'Poppins',
-      borderRadius: '2px',
+      fontFamily: "Poppins",
+      borderRadius: "2px",
       display: "flex",
-      justifyContent: 'center',
-      alignItem: 'center',
-      color: 'black'
+      justifyContent: "center",
+      alignItem: "center",
+      color: "black",
     },
     favorite: {
-      position: 'absolute',
-      top: '3%',
-      right: '5%',
-      width: '10%',
-      height: '5%',
-      borderRadius: '50%',
-      backgroundColor: 'white',
-      padding: '2%'
+      position: "absolute",
+      top: "3%",
+      right: "5%",
+      width: "10%",
+      height: "5%",
+      borderRadius: "50%",
+      backgroundColor: "white",
+      padding: "2%",
     },
     ratingBox: {
       marginBottom: "8px",
-      fontWeight: 'bold',
-      marginTop: '3px'
-
-
+      fontWeight: "bold",
+      marginTop: "3px",
     },
   };
 
-  const { src, alt, description1, description2, price, ratingStar } = props
+  const { src, alt, description1, description2, price } = props;
   return (
     <Stack mb={5} width={265}>
       <Stack style={styles.container}>
@@ -72,19 +70,16 @@ const ProductCard = (props) => {
         <FavoriteBorderIcon style={styles.favorite} />
         <Button style={styles.btn}>Add to Cart</Button>
       </Stack>
-      <Link to='/product-details' style={{ textDecoration: 'none' }}>
+      <Link to="/product-details" style={{ textDecoration: "none" }}>
         <Stack spacing={1}>
           <Stack style={styles.ratingBox}>
-
-            <Rating
+            {/* <Rating
               name="customized-color"
               readOnly
               defaultValue={ratingStar}
               precision={0.5}
               sx={{ color: 'black' }}
-            />
-
-
+            /> */}
           </Stack>
           <h3
             style={{
@@ -94,7 +89,7 @@ const ProductCard = (props) => {
               fontWeight: 600,
               lineHeight: "1.625rem",
               width: "80%",
-              color: 'black'
+              color: "black",
             }}
           >
             {/* Skullcandy - Crusher anc 2 <br />
@@ -110,7 +105,7 @@ const ProductCard = (props) => {
               fontStyle: "normal",
               fontWeight: 600,
               lineHeight: "1.3rem",
-              color: 'black'
+              color: "black",
             }}
           >
             {/* $299.99 */}
