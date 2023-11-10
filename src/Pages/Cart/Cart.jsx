@@ -1,5 +1,5 @@
 import { Box, Button, Container, IconButton, Typography } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 
 const Cart = () => {
@@ -7,16 +7,22 @@ const Cart = () => {
   const [isShoppingCompete, setIsShoppingComplete] = useState(false);
   const [isCheckoutComplete, setIsCheckoutComplte] = useState(false);
   const [cartComplete, setCartComplete] = useState(false);
+  const tab1Ref = useRef(null);
+  const tab2Ref = useRef(null);
+  const tab3Ref = useRef(null);
   const handlepurchaseClick = () => {
     setCartComplete(true);
+    tab3Ref.current.scrollIntoView({ behavior: "smooth" });
   };
   const handelCheckoutClick = () => {
     setIsShoppingComplete(true);
     setActtiveTab("2");
+    tab2Ref.current.scrollIntoView({ behavior: "smooth" });
   };
   const handleplaceOrderClick = () => {
     setIsCheckoutComplte(true);
     setActtiveTab("3");
+    tab3Ref.current.scrollIntoView({ behavior: "smooth" });
   };
   return (
     <div>
@@ -42,11 +48,12 @@ const Cart = () => {
             textAlign: "center",
             justifyContent: { sm: "none", md: "center" },
             gap: "40px",
-            overflow: "scroll",
+            overflowX: { xs: "scroll", md: "hidden" },
             margin: "1rem",
           }}
         >
           <Box
+            ref={tab1Ref}
             onClick={() => {
               setActtiveTab("1");
               setIsShoppingComplete(false);
@@ -103,6 +110,7 @@ const Cart = () => {
             </Typography>
           </Box>
           <Box
+            ref={tab2Ref}
             onClick={() => {
               setActtiveTab("2");
               setIsCheckoutComplte(false);
@@ -165,6 +173,7 @@ const Cart = () => {
             </Typography>
           </Box>
           <Box
+            ref={tab3Ref}
             onClick={() => {
               setActtiveTab("3");
               setCartComplete(false);
