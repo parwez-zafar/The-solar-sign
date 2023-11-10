@@ -1,3 +1,5 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
 import {
   Box,
   Container,
@@ -9,10 +11,8 @@ import {
   Radio,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import ShoppingCartData from "../../Data/ShoppingCartData";
 import CustomButton from "../CustomButton";
-import PropTypes from "prop-types";
+import ShoppingCartData from "../../Data/ShoppingCartData";
 
 const styles = {
   formStyle: {
@@ -42,6 +42,64 @@ const headingStyles = {
 
 const innerText = { fontFamily: "inter", fontWeight: "400", fontSize: "16px" };
 
+const ReusableInputField = ({ label, placeholder, name, type }) => (
+  <FormControl variant="outlined" fullWidth>
+    <FormHelperText id="outlined-weight-helper-text" sx={styles.formStyle}>
+      {label}
+    </FormHelperText>
+    <OutlinedInput
+      size="small"
+      id="outlined-adornment-weight"
+      placeholder={placeholder}
+      aria-describedby="outlined-weight-helper-text"
+      name={name}
+      required
+      type={type}
+    />
+  </FormControl>
+);
+
+const ReusableRadioBox = ({ value, label, selectedValue, onChange }) => (
+  <Box
+    sx={{
+      display: "flex",
+      border: "1px solid #6C7275",
+      borderRadius: "5px",
+      margin: "2%",
+      marginLeft: "0",
+      cursor: "pointer",
+      backgroundColor: selectedValue === value ? "#F3F5F7" : "transparent",
+      "&:hover": {
+        backgroundColor: "#F3F5F7",
+      },
+    }}
+    onClick={() => onChange(value)}
+  >
+    <Radio
+      checked={selectedValue === value}
+      onChange={() => onChange(value)}
+      sx={{
+        color: "black",
+        "&.Mui-checked": {
+          color: "black",
+        },
+      }}
+    />
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+        p: 2,
+        paddingLeft: "0",
+      }}
+    >
+      <Typography sx={innerText}>{label}</Typography>
+    </Box>
+  </Box>
+);
+
 const CheckoutDetails = ({ handleplaceOrderClick }) => {
   const [selectedValue, setSelectedValue] = useState("free");
 
@@ -51,10 +109,6 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
   const [individualSubtotals, setIndividualSubtotals] = useState(
     ShoppingCartData.map((item) => item.price * item.quantity)
   );
-
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
 
   const handleDecrease = (index) => {
     const updatedQuantities = [...quantities];
@@ -77,14 +131,6 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
       updatedQuantities[index] * ShoppingCartData[index].price;
     setIndividualSubtotals(updatedIndividualSubtotals);
   };
-
-  const controlProps = (item) => ({
-    checked: selectedValue === item,
-    onChange: handleChange,
-    value: item,
-    name: "color-radio-button-demo",
-    inputProps: { "aria-label": item },
-  });
 
   return (
     <Container>
@@ -185,6 +231,7 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
               </Grid>
             </form>
           </Box>
+
           <Box sx={boxStyles}>
             <form>
               <Typography sx={headingStyles}>Shipping Address</Typography>
@@ -305,87 +352,22 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
               </Grid>
             </form>
           </Box>
+
           <Box sx={boxStyles}>
             <form>
               <Typography sx={headingStyles}>Payment Method</Typography>
-              <Box
-                sx={{
-                  display: "flex",
-                  border: "1px solid #6C7275",
-                  borderRadius: "5px",
-                  margin: "2%",
-                  marginLeft: "0",
-                  cursor: "pointer",
-                  backgroundColor:
-                    selectedValue === "free" ? "#F3F5F7" : "transparent",
-                  "&:hover": {
-                    backgroundColor: "#F3F5F7",
-                  },
-                }}
-                onClick={() => setSelectedValue("free")}
-              >
-                {" "}
-                <Radio
-                  {...controlProps("free")}
-                  sx={{
-                    color: "black",
-                    "&.Mui-checked": {
-                      color: "black",
-                    },
-                  }}
-                />
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    p: 2,
-                    paddingLeft: "0",
-                  }}
-                >
-                  <Typography sx={innerText}>Free Shipping</Typography>
-                </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  border: "1px solid #6C7275",
-                  borderRadius: "5px",
-                  margin: "2%",
-                  marginLeft: "0",
-                  cursor: "pointer",
-                  backgroundColor:
-                    selectedValue === "paypal" ? "#F3F5F7" : "transparent",
-                  "&:hover": {
-                    backgroundColor: "#F3F5F7",
-                  },
-                }}
-                onClick={() => setSelectedValue("paypal")}
-              >
-                {" "}
-                <Radio
-                  {...controlProps("paypal")}
-                  sx={{
-                    color: "black",
-                    "&.Mui-checked": {
-                      color: "black",
-                    },
-                  }}
-                />
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    width: "100%",
-                    p: 2,
-                    paddingLeft: "0",
-                  }}
-                >
-                  <Typography sx={innerText}>Paypal</Typography>
-                </Box>
-              </Box>
+              <ReusableRadioBox
+                value="free"
+                label="Free Shipping"
+                selectedValue={selectedValue}
+                onChange={setSelectedValue}
+              />
+              <ReusableRadioBox
+                value="paypal"
+                label="Paypal"
+                selectedValue={selectedValue}
+                onChange={setSelectedValue}
+              />
               <Box sx={{ color: "#6C7275", mb: 2 }}>
                 <Divider />
               </Box>
@@ -612,6 +594,20 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
       </Grid>
     </Container>
   );
+};
+
+ReusableInputField.propTypes = {
+  label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+};
+
+ReusableRadioBox.propTypes = {
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 CheckoutDetails.propTypes = {

@@ -40,7 +40,7 @@ const styles = {
   },
 };
 
-const ShoppingCart = ({ onCheckoutClick }) => {
+const ShoppingCart = ({ handelCheckoutClick }) => {
   const matches = useMediaQuery("(min-width:1200px)");
 
   const [quantities, setQuantities] = useState(
@@ -583,12 +583,8 @@ const ShoppingCart = ({ onCheckoutClick }) => {
                   ${totalPrice}.00
                 </Typography>
               </Box>
-              <Box>
-                <CustomButton
-                  type="button"
-                  wdth="100%"
-                  onClick={onCheckoutClick}
-                >
+              <Box onClick={handelCheckoutClick}>
+                <CustomButton type="button" wdth="100%">
                   Check Out
                 </CustomButton>
               </Box>
@@ -601,7 +597,7 @@ const ShoppingCart = ({ onCheckoutClick }) => {
 };
 
 ShoppingCart.propTypes = {
-  onCheckoutClick: PropTypes.func,
+  handelCheckoutClick: PropTypes.func,
 };
 
 export default ShoppingCart;
