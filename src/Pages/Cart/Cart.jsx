@@ -119,7 +119,7 @@ const Cart = () => {
           textAlign: "center",
           justifyContent: { sm: "none", md: "center" },
           gap: "40px",
-          overflowX: { xsX: { xs: "scroll", md: "hidden" }, md: "hidden" },
+          overflowX: { xs: "scroll", md: "hidden" },
           margin: "1rem",
         }}
       >
