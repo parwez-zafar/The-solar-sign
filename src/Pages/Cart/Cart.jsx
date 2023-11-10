@@ -241,7 +241,7 @@ const Cart = () => {
           {/* <Button onClick={handelCheckoutClick} width="100%">
             Chekout
           </Button> */}
-          <ShoppingCart onCheckoutClick={handelCheckoutClick} />
+          <ShoppingCart handelCheckoutClick={handelCheckoutClick} />
         </Box>
       )}
       {activeTab === "2" && (
@@ -249,7 +249,7 @@ const Cart = () => {
           {/* <Button  width="100%">
             Place order
           </Button> */}
-          <CheckoutDetails onClick={handleplaceOrderClick} />
+          <CheckoutDetails handleplaceOrderClick={handleplaceOrderClick} />
         </Box>
       )}
       {activeTab === "3" && (

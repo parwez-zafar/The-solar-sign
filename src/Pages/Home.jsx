@@ -44,9 +44,16 @@ const Home = () => {
   if (windowSize.innerWidth <= 473) {
     count = 2;
     ProductCount = 1;
-  } else if (windowSize.innerWidth > 473 && windowSize.innerWidth <= 692) { count = 3; ProductCount = 2; }
-  else if (windowSize.innerWidth > 692 && windowSize.innerWidth < 1045) { count = 4; ProductCount = 3 }
-  else { count = 6; ProductCount = 4 }
+  } else if (windowSize.innerWidth > 473 && windowSize.innerWidth <= 692) {
+    count = 3;
+    ProductCount = 2;
+  } else if (windowSize.innerWidth > 692 && windowSize.innerWidth < 1045) {
+    count = 4;
+    ProductCount = 3;
+  } else {
+    count = 6;
+    ProductCount = 4;
+  }
   return (
     <React.Fragment>
       {/* main hero section  */}
@@ -132,10 +139,7 @@ const Home = () => {
           className="mySwiper"
         >
           {BrandData.map((item, i) => (
-
-            <SwiperSlide
-              key={i}
-            >
+            <SwiperSlide key={i}>
               <img
                 src={item.src}
                 alt={item.alt}
@@ -145,7 +149,6 @@ const Home = () => {
                 }}
               />
             </SwiperSlide>
-
           ))}
         </Swiper>
       </Container>
@@ -172,36 +175,25 @@ const Home = () => {
           className="mySwiper"
         >
           {ProductData.map((item, i) => (
-
-            <SwiperSlide
-              key={i}
-            >
+            <SwiperSlide key={i}>
               <Product
-
                 src={item.src}
                 alt={item.alt}
                 description1={item.description1}
                 description2={item.description2}
                 price={item.price}
-                ratingStar={item.ratingStar}
                 style={{
                   width: "auto",
                   margin: "10px 10px",
                 }}
               />
             </SwiperSlide>
-
           ))}
-
-
-
         </Swiper>
       </Container>
 
-
-
       {/* services card section */}
-      <Container style={{ marginTop: '9px' }}>
+      <Container style={{ marginTop: "9px" }}>
         <Grid
           container
           spacing={{ xs: 2, md: 3 }}
