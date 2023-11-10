@@ -10,6 +10,9 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import ShoppingCartData from "../../Data/ShoppingCartData";
+import CustomButton from "../CustomButton";
+import PropTypes from "prop-types";
 
 const styles = {
   formStyle: {
@@ -24,7 +27,7 @@ const styles = {
 const boxStyles = {
   borderRadius: "0.25rem",
   border: "1px solid #6C7275",
-  p: 5,
+  p: 3,
   mb: 3,
 };
 
@@ -39,11 +42,40 @@ const headingStyles = {
 
 const innerText = { fontFamily: "inter", fontWeight: "400", fontSize: "16px" };
 
-const CheckoutDetails = () => {
+const CheckoutDetails = ({ handleplaceOrderClick }) => {
   const [selectedValue, setSelectedValue] = useState("free");
+
+  const [quantities, setQuantities] = useState(
+    ShoppingCartData.map((item) => item.quantity)
+  );
+  const [individualSubtotals, setIndividualSubtotals] = useState(
+    ShoppingCartData.map((item) => item.price * item.quantity)
+  );
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
+  };
+
+  const handleDecrease = (index) => {
+    const updatedQuantities = [...quantities];
+    updatedQuantities[index] = Math.max(1, updatedQuantities[index] - 1);
+    setQuantities(updatedQuantities);
+
+    const updatedIndividualSubtotals = [...individualSubtotals];
+    updatedIndividualSubtotals[index] =
+      updatedQuantities[index] * ShoppingCartData[index].price;
+    setIndividualSubtotals(updatedIndividualSubtotals);
+  };
+
+  const handleIncrease = (index) => {
+    const updatedQuantities = [...quantities];
+    updatedQuantities[index] = updatedQuantities[index] + 1;
+    setQuantities(updatedQuantities);
+
+    const updatedIndividualSubtotals = [...individualSubtotals];
+    updatedIndividualSubtotals[index] =
+      updatedQuantities[index] * ShoppingCartData[index].price;
+    setIndividualSubtotals(updatedIndividualSubtotals);
   };
 
   const controlProps = (item) => ({
@@ -432,13 +464,158 @@ const CheckoutDetails = () => {
               </Grid>
             </form>
           </Box>
+          <Box sx={{ mb: 5 }} onClick={handleplaceOrderClick}>
+            <CustomButton wdth="100%">Place Order</CustomButton>
+          </Box>
         </Grid>
         <Grid item xs={12} md={4}>
-          Order Summary here
+          <Box sx={boxStyles}>
+            <Typography sx={headingStyles}>Order Summary</Typography>
+            {ShoppingCartData.map((item, i) => (
+              <Grid
+                key={i}
+                container
+                spacing={2}
+                display="flex"
+                justifyContent="space-between"
+              >
+                <Grid item>
+                  <Box sx={{ display: "flex" }}>
+                    <Grid>
+                      <img src={item.product.src} alt="" />
+                    </Grid>
+                    <Grid>
+                      <Typography
+                        sx={{
+                          fontFamily: "inter",
+                          fontWeight: "600",
+                          fontSize: "14px",
+                          color: "#141718",
+                        }}
+                      >
+                        {item.product.name}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontFamily: "inter",
+                          fontWeight: "400",
+                          fontSize: "12px",
+                          color: "#6C7275",
+                        }}
+                      >
+                        Color : {item.product.color}
+                      </Typography>
+                      <Box
+                        sx={{
+                          border: "1px solid #6C7275",
+                          borderRadius: "4px",
+                          height: "30%",
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Typography ml={1} onClick={() => handleDecrease(i)}>
+                          -
+                        </Typography>
+
+                        {quantities[i]}
+                        <Typography mr={1} onClick={() => handleIncrease(i)}>
+                          +
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </Box>
+                </Grid>
+                <Grid item>
+                  <Typography
+                    // py={1}
+                    sx={{
+                      fontFamily: "inter",
+                      fontWeight: "600",
+                      fontSize: "18px",
+                      color: "#121212",
+                    }}
+                  >
+                    {item.price}
+                  </Typography>
+                </Grid>
+                <Divider style={{ width: "100%", margin: "1rem  0rem" }} />
+              </Grid>
+            ))}
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <FormControl variant="outlined" fullWidth>
+                  <OutlinedInput
+                    size="small"
+                    id="outlined-adornment-weight"
+                    placeholder="Input"
+                    aria-describedby="outlined-weight-helper-text"
+                    name="input"
+                    required
+                    type="text"
+                    //   value={accountDetails.firstname}
+                    //   onChange={handerInputChanges}
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <CustomButton>Apply</CustomButton>
+              </Grid>
+            </Grid>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+            >
+              <Typography sx={{ fontFamily: "Inter" }}>JenkateMW</Typography>
+              <Typography sx={{ color: "#38CB89" }}>
+                -$25.00 [Remove]
+              </Typography>
+            </Box>
+            <Divider style={{ width: "100%", margin: "1rem  0rem" }} />
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+            >
+              <Typography sx={{ fontFamily: "Inter" }}>Shipping</Typography>
+              <Typography sx={{ fontFamily: "Inter", fontWeight: 600 }}>
+                Free
+              </Typography>
+            </Box>
+            <Divider style={{ width: "100%", margin: "1rem  0rem" }} />
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}
+            >
+              <Typography sx={{ fontFamily: "Inter" }}>Subtotal</Typography>
+              <Typography sx={{ fontFamily: "Inter", fontWeight: 600 }}>
+                $99.00
+              </Typography>
+            </Box>
+            <Divider style={{ width: "100%", margin: "1rem  0rem" }} />
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                mt: 2,
+                fontFamily: "Inter",
+                fontWeight: 600,
+              }}
+            >
+              <Typography sx={{ fontFamily: "Inter", fontWeight: 600 }}>
+                Total
+              </Typography>
+              <Typography sx={{ fontFamily: "Inter", fontWeight: 600 }}>
+                $234.00
+              </Typography>
+            </Box>
+          </Box>
         </Grid>
       </Grid>
     </Container>
   );
+};
+
+CheckoutDetails.propTypes = {
+  handleplaceOrderClick: PropTypes.func,
 };
 
 export default CheckoutDetails;

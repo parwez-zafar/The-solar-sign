@@ -5,17 +5,19 @@ import {
   Grid,
   Paper,
   Radio,
+  TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
+import PercentIcon from "@mui/icons-material/Percent";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-// import OrderHistoryData from "../../Data/OrderHistoryData";
+import PropTypes from "prop-types";
 import ShoppingCartData from "../../Data/ShoppingCartData";
 import { useEffect, useState } from "react";
 import CustomButton from "../CustomButton";
@@ -38,7 +40,7 @@ const styles = {
   },
 };
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ onCheckoutClick }) => {
   const matches = useMediaQuery("(min-width:1200px)");
 
   const [quantities, setQuantities] = useState(
@@ -334,6 +336,62 @@ const ShoppingCart = () => {
                   </Grid>
                 ))
               )}
+
+              <Box sx={{ width: { xs: "100%", sm: "60%" }, mt: "5%" }}>
+                <Typography
+                  sx={{
+                    fontFamily: "Poppins",
+                    fontWeight: "500",
+                    fontSize: "20px",
+                  }}
+                >
+                  Have a coupon?
+                </Typography>
+                <Typography
+                  sx={{
+                    fontFamily: "inter",
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    color: "#6C7275",
+                    mb: "1rem",
+                    mt: "0.5rem",
+                  }}
+                >
+                  Add your code for an instant cart discount
+                </Typography>
+                <Box
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    border: "1px solid #6C7275",
+                    p: "0.5rem",
+                    mt: "2rem",
+                    borderRadius: "3px",
+                    height: "3rem",
+                  }}
+                >
+                  <PercentIcon sx={{ marginLeft: ".4rem", color: "#6C7275" }} />
+                  <TextField
+                    variant="standard"
+                    InputProps={{ disableUnderline: true }}
+                    placeholder="Coupon Code"
+                    type="text"
+                    name="coupon"
+                    sx={{ marginLeft: ".3rem" }}
+                  />
+                  <Typography
+                    style={{
+                      marginLeft: "auto",
+                      marginRight: "1rem",
+                      fontFamily: "inter",
+                      fontWeight: "500",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Apply
+                  </Typography>
+                </Box>
+              </Box>
             </Box>
           </Grid>
 
@@ -525,16 +583,25 @@ const ShoppingCart = () => {
                   ${totalPrice}.00
                 </Typography>
               </Box>
-
-              <CustomButton type="button" wdth="100%">
-                Check Out
-              </CustomButton>
+              <Box>
+                <CustomButton
+                  type="button"
+                  wdth="100%"
+                  onClick={onCheckoutClick}
+                >
+                  Check Out
+                </CustomButton>
+              </Box>
             </Paper>
           </Grid>
         </Grid>
       </Box>
     </Container>
   );
+};
+
+ShoppingCart.propTypes = {
+  onCheckoutClick: PropTypes.func,
 };
 
 export default ShoppingCart;
