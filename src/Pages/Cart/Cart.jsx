@@ -1,6 +1,7 @@
 import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
+import ShoppingCart from "../../Components/ShoppingCart";
 
 const Cart = () => {
   const [activeTab, setActtiveTab] = useState("1");
@@ -67,8 +68,8 @@ const Cart = () => {
               borderBottom: isShoppingCompete
                 ? "2px solid #45B26B"
                 : activeTab === "1"
-                ? "2px solid black"
-                : "",
+                  ? "2px solid black"
+                  : "",
               cursor: "pointer",
             }}
           >
@@ -77,8 +78,8 @@ const Cart = () => {
                 background: isShoppingCompete
                   ? "#45B26B"
                   : activeTab === "1"
-                  ? "#000"
-                  : "#B1B5C3",
+                    ? "#000"
+                    : "#B1B5C3",
                 marginRight: "1rem",
               }}
             >
@@ -102,8 +103,8 @@ const Cart = () => {
                 color: isShoppingCompete
                   ? "#45B26B"
                   : activeTab === "1"
-                  ? "black"
-                  : "#B1B5C3",
+                    ? "black"
+                    : "#B1B5C3",
               }}
             >
               Shopping cart
@@ -125,8 +126,8 @@ const Cart = () => {
               borderBottom: isCheckoutComplete
                 ? "2px solid #45B26B"
                 : activeTab === "2"
-                ? "2px solid black"
-                : "",
+                  ? "2px solid black"
+                  : "",
             }}
           >
             <IconButton
@@ -134,8 +135,8 @@ const Cart = () => {
                 background: isCheckoutComplete
                   ? "#45B26B"
                   : activeTab === "2"
-                  ? "#000"
-                  : "#B1B5C3",
+                    ? "#000"
+                    : "#B1B5C3",
                 marginRight: "1rem",
               }}
             >
@@ -146,8 +147,8 @@ const Cart = () => {
                     isCheckoutComplete
                       ? "#45B26B"
                       : activeTab === "2"
-                      ? "white"
-                      : "#FCFCFD"
+                        ? "white"
+                        : "#FCFCFD"
                   }
                   width={30}
                   height={30}
@@ -165,8 +166,8 @@ const Cart = () => {
                 color: isCheckoutComplete
                   ? "#45B26B"
                   : activeTab === "2"
-                  ? "black"
-                  : "#B1B5C3",
+                    ? "black"
+                    : "#B1B5C3",
               }}
             >
               Checkout details{" "}
@@ -187,8 +188,8 @@ const Cart = () => {
               borderBottom: cartComplete
                 ? "2px solid #45B26B"
                 : activeTab === "3"
-                ? "2px solid black"
-                : "",
+                  ? "2px solid black"
+                  : "",
             }}
           >
             <IconButton
@@ -196,8 +197,8 @@ const Cart = () => {
                 background: cartComplete
                   ? "#45B26B"
                   : activeTab === "3"
-                  ? "#000"
-                  : "#B1B5C3",
+                    ? "#000"
+                    : "#B1B5C3",
                 marginRight: "1rem",
               }}
             >
@@ -208,8 +209,8 @@ const Cart = () => {
                     cartComplete
                       ? "#45B26B"
                       : activeTab === "3"
-                      ? "white"
-                      : "#FCFCFD"
+                        ? "white"
+                        : "#FCFCFD"
                   }
                   width={30}
                   height={30}
@@ -227,8 +228,8 @@ const Cart = () => {
                 color: cartComplete
                   ? "#45B26B"
                   : activeTab === "3"
-                  ? "black"
-                  : "#B1B5C3",
+                    ? "black"
+                    : "#B1B5C3",
               }}
             >
               Order Complete{" "}
@@ -240,6 +241,7 @@ const Cart = () => {
             <Button onClick={handelCheckoutClick} width="100%">
               Chekout
             </Button>
+            <ShoppingCart />
           </Box>
         )}
         {activeTab === "2" && (
