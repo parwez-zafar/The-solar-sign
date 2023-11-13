@@ -163,7 +163,7 @@ const Home = () => {
             letterSpacing: "-0.025rem",
           }}
         >
-          New Arrivals
+          New Categories
         </h3>
         <Swiper
           slidesPerView={ProductCount}

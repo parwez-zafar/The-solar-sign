@@ -15,7 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -73,6 +73,14 @@ const Header = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem
+        onClick={() => {
+          navigate("/account");
+          handleMenuClose();
+        }}
+      >
+        Account
+      </MenuItem>
       <MenuItem
         onClick={() => {
           navigate("/signup");
@@ -177,20 +185,21 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            href="/"
-            sx={{
-              color: "#141718",
-              fontFamily: "Poppins",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            3legant.
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                color: "#141718",
+                fontFamily: "Poppins",
+                fontWeight: 600,
+                cursor: "pointer",
+              }}
+            >
+              3legant.
+            </Typography>
+          </Link>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Typography sx={{ display: "flex", flexGrow: 1 }}>
               {pages.map((page) => (
@@ -230,11 +239,13 @@ const Header = () => {
             >
               <AccountCircle />
             </IconButton>
-            <IconButton size="large" sx={{ color: "#141718" }}>
-              <Badge>
-                <LocalMallIcon />
-              </Badge>
-            </IconButton>
+            <Link to="/cart">
+              <IconButton size="large" sx={{ color: "#141718" }}>
+                <Badge>
+                  <LocalMallIcon />
+                </Badge>
+              </IconButton>
+            </Link>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
