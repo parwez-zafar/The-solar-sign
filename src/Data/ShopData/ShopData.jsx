@@ -4,7 +4,7 @@ import black_tray_table from "../../assets/images/Shop_Page/black_tray_table.png
 import cozy_sofa from "../../assets/images/Shop_Page/cozy_sofa.png";
 import light_beige_pillow from "../../assets/images/Shop_Page/light_beige_pillow.png";
 import loveseat_sofa from "../../assets/images/Shop_Page/Loveseat_Sofa.png";
-import luxury_sofa from "../../assets/images/Shop_Page/Luxury_Sofa.png";
+import luxury_sofa from "../../assets/images/Shop_Page/Luxury_sofa.png";
 import off_white_pillow from "../../assets/images/Shop_Page/off_white_pillow.png";
 import table_lamp1 from "../../assets/images/Shop_Page/table_lamp1.png";
 import table_lamp2 from "../../assets/images/Shop_Page/table_lamp2.png";
