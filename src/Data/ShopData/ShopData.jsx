@@ -1,15 +1,15 @@
-import bamboo_basket from "../../assets/images/Shop Page/bamboo_basket.png";
-import black_brow_side_table from "../../assets/images/Shop Page/black_brow_side_table.png";
-import black_tray_table from "../../assets/images/Shop Page/black_tray_table.png";
-import cozy_sofa from "../../assets/images/Shop Page/cozy_sofa.png";
-import light_beige_pillow from "../../assets/images/Shop Page/light_beige_pillow.png";
-import loveseat_sofa from "../../assets/images/Shop Page/Loveseat_Sofa.png";
-import luxury_sofa from "../../assets/images/Shop Page/Luxury_Sofa.png";
-import off_white_pillow from "../../assets/images/Shop Page/off_white_pillow.png";
-import table_lamp1 from "../../assets/images/Shop Page/table_lamp1.png";
-import table_lamp2 from "../../assets/images/Shop Page/table_lamp2.png";
-import table_lamp3 from "../../assets/images/Shop Page/table_lamp3.png";
-import white_drawer_unit from "../../assets/images/Shop Page/white_drawer_unit.png";
+import bamboo_basket from "../../assets/images/Shop_Page/bamboo_basket.png";
+import black_brow_side_table from "../../assets/images/Shop_Page/black_brow_side_table.png";
+import black_tray_table from "../../assets/images/Shop_Page/black_tray_table.png";
+import cozy_sofa from "../../assets/images/Shop_Page/cozy_sofa.png";
+import light_beige_pillow from "../../assets/images/Shop_Page/light_beige_pillow.png";
+import loveseat_sofa from "../../assets/images/Shop_Page/Loveseat_Sofa.png";
+import luxury_sofa from "../../assets/images/Shop_Page/Luxury_Sofa.png";
+import off_white_pillow from "../../assets/images/Shop_Page/off_white_pillow.png";
+import table_lamp1 from "../../assets/images/Shop_Page/table_lamp1.png";
+import table_lamp2 from "../../assets/images/Shop_Page/table_lamp2.png";
+import table_lamp3 from "../../assets/images/Shop_Page/table_lamp3.png";
+import white_drawer_unit from "../../assets/images/Shop_Page/white_drawer_unit.png";
 
 const ShopData = [
   {
