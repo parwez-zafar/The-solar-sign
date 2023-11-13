@@ -14,6 +14,7 @@ import AuthForm from "./Pages/AuthForm";
 import ProductDetails from "./Components/ProductDetails";
 import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
+import Shop from './Pages/Shop'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
         <Route path="product-details" element={<ProductDetails />} />
         <Route path="account" element={<Account />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="shop" element={<Shop />} />
 
         <Route path="authform" element={<AuthForm />} />
         <Route path="signin" element={<SignIn />} />
