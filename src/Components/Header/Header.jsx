@@ -16,6 +16,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const pages = [
   { name: "Home", path: "/" },
@@ -57,6 +58,21 @@ const Header = () => {
   const handleMobileNavLinkOpen = (event) => {
     setShowNavLinks(event.currentTarget);
   };
+
+  const getLogo = async () => {
+    // console.log(import.meta.env.VITE_BASE_URL);
+    await axios.get("https://printsigns.onrender.com" + "/api/config");
+  };
+  const getCategories = async () => {
+    // console.log(import.meta.env.VITE_BASE_URL);
+    await axios.get(
+      "https://printsigns.onrender.com" + "/api/category/getCategories"
+    );
+  };
+  React.useEffect(() => {
+    getLogo();
+    getCategories();
+  }, []);
 
   const renderMenu = (
     <Menu
