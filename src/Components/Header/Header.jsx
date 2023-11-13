@@ -61,13 +61,17 @@ const Header = () => {
 
   const getLogo = async () => {
     // console.log(import.meta.env.VITE_BASE_URL);
-    await axios.get("https://printsigns.onrender.com" + "/api/config");
+    const logo = await axios.get(
+      "https://printsigns.onrender.com" + "/api/config"
+    );
+    // console.log(logo);
   };
   const getCategories = async () => {
     // console.log(import.meta.env.VITE_BASE_URL);
-    await axios.get(
+    const categories = await axios.get(
       "https://printsigns.onrender.com" + "/api/category/getCategories"
     );
+    // console.log("categories", categories.data);
   };
   React.useEffect(() => {
     getLogo();

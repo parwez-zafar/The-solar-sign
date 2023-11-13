@@ -197,7 +197,6 @@ const Shop = () => {
             <FormControl sx={{ width: "100%" }}>
               <Select name="price" value={priceValue} onChange={handleChange}>
                 <MenuItem value="All">All</MenuItem>
-
                 <MenuItem value={"0-100"}>0-100</MenuItem>
                 <MenuItem value={"100-1000"}>100-1000</MenuItem>
                 <MenuItem value={"1000-5000"}>1000-5000</MenuItem>
@@ -231,7 +230,6 @@ const Shop = () => {
             ))}
           </Grid>
         </Grid>
-
         <Grid
           item
           display="flex"
