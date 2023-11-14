@@ -12,8 +12,11 @@ import { Pagination } from "swiper/modules";
 // import ProductCard from "../Components/Product/Product";
 import ProductData from "../Data/ProductData/ProductData";
 import Product from "../Components/Product";
+import axios from "axios";
 
 const Home = () => {
+  const [categories, setCategories] = React.useState([]);
+
   const imageStyle = {
     maxWidth: "100%",
     height: "auto",
@@ -38,6 +41,19 @@ const Home = () => {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
   }
+
+  const getCategories = async () => {
+    // console.log(import.meta.env.VITE_BASE_URL);
+    const response = await axios.get(
+      "https://printsigns.onrender.com" + "/api/category/getCategories"
+    );
+    if (response.status === 200) {
+      setCategories(response.data.categories);
+    }
+  };
+  React.useEffect(() => {
+    getCategories();
+  }, []);
 
   let count = 6;
   let ProductCount = 4;
@@ -163,7 +179,7 @@ const Home = () => {
             letterSpacing: "-0.025rem",
           }}
         >
-          New Categories
+          Categories
         </h3>
         <Swiper
           slidesPerView={ProductCount}
@@ -174,14 +190,14 @@ const Home = () => {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {ProductData.map((item, i) => (
-            <SwiperSlide key={i}>
+          {categories.map((category) => (
+            <SwiperSlide key={category._id}>
               <Product
-                src={item.src}
-                alt={item.alt}
-                description1={item.description1}
-                description2={item.description2}
-                price={item.price}
+                src={category.categoryImage.secure_url}
+                alt={category.categoryName}
+                description1={category.categoryName}
+                // description2={item.description2}
+                // price={item.price}
                 style={{
                   width: "auto",
                   margin: "10px 10px",

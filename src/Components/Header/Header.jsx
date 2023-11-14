@@ -64,18 +64,10 @@ const Header = () => {
     const logo = await axios.get(
       "https://printsigns.onrender.com" + "/api/config"
     );
-    // console.log(logo);
   };
-  const getCategories = async () => {
-    // console.log(import.meta.env.VITE_BASE_URL);
-    const categories = await axios.get(
-      "https://printsigns.onrender.com" + "/api/category/getCategories"
-    );
-    // console.log("categories", categories.data);
-  };
+
   React.useEffect(() => {
     getLogo();
-    getCategories();
   }, []);
 
   const renderMenu = (

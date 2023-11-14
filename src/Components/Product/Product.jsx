@@ -1,10 +1,7 @@
-import Button from "@mui/material/Button";
-import Rating from "@mui/material/Rating";
-import { Stack, Typography } from "@mui/material";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ProductCard = (props) => {
+const ProductCard = ({ src, alt, description1 }) => {
   const styles = {
     container: {
       position: "relative",
@@ -12,7 +9,7 @@ const ProductCard = (props) => {
     },
     img: {
       width: "100%",
-      height: "auto",
+      height: "500",
     },
     btn: {
       position: "absolute",
@@ -60,15 +57,10 @@ const ProductCard = (props) => {
       marginTop: "3px",
     },
   };
-
-  const { src, alt, description1, description2, price } = props;
   return (
     <Stack mb={5} width={265}>
       <Stack style={styles.container}>
-        <img src={src} alt={alt} style={styles.img} />
-        <Typography style={styles.newText}>NEW</Typography>
-        <FavoriteBorderIcon style={styles.favorite} />
-        <Button style={styles.btn}>Add to Cart</Button>
+        <img src={src} alt={alt} height="150px" />
       </Stack>
       <Link to="/product-details" style={{ textDecoration: "none" }}>
         <Stack spacing={1}>
@@ -92,25 +84,8 @@ const ProductCard = (props) => {
               color: "black",
             }}
           >
-            {/* Skullcandy - Crusher anc 2 <br />
-      wireless headphones */}
             {description1}
-            <br />
-            {description2}
           </h3>
-          <p
-            style={{
-              fontFamily: "Inter",
-              fontSize: "0.8rem",
-              fontStyle: "normal",
-              fontWeight: 600,
-              lineHeight: "1.3rem",
-              color: "black",
-            }}
-          >
-            {/* $299.99 */}
-            {price}
-          </p>
         </Stack>
       </Link>
     </Stack>
