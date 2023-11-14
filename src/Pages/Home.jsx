@@ -48,6 +48,7 @@ const Home = () => {
       "https://printsigns.onrender.com" + "/api/category/getCategories"
     );
     if (response.status === 200) {
+      console.log(response.data)
       setCategories(response.data.categories);
     }
   };
@@ -195,7 +196,7 @@ const Home = () => {
               <Product
                 src={category.categoryImage.secure_url}
                 alt={category.categoryName}
-                description1={category.categoryName}
+                categoryName={category.categoryName}
                 // description2={item.description2}
                 // price={item.price}
                 style={{

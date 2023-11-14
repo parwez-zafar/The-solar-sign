@@ -15,12 +15,15 @@ import ProductDetails from "./Components/ProductDetails";
 import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
 import Shop from './Pages/Shop'
+import Products from "./Components/Product/Products";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <React.Fragment>
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
+                <Route path="/product/category/:category" element={<Products />} />
+
         <Route path="product-details" element={<ProductDetails />} />
         <Route path="account" element={<Account />} />
         <Route path="cart" element={<Cart />} />

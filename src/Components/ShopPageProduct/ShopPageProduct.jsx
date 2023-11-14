@@ -57,7 +57,7 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
       <Grid item sx={styles.container}>
         <Typography sx={styles.newText}> NEW</Typography>
         <Typography sx={styles.discountText}>-50%</Typography>
-        <img src={src} alt={alt} style={{ width: "100%", height: "100%" }} />
+        <img src={src} alt={alt} style={{ width: "100%"}} />
         <Box sx={styles.btnBox}>
           <CustomButton type="button" wdth="80%">
             Add to cart
@@ -70,12 +70,12 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
             {name}
           </Typography>
           <Box sx={styles.descriptionBox}>
-            <Typography
+            {/* <Typography
               sx={{ ...styles.nametext, fontSize: "14px", color: "#121212" }}
             >
               {" "}
-              ${discountPrice}
-            </Typography>
+              ₹{discountPrice}
+            </Typography> */}
             {price && (
               <Typography
                 sx={{
@@ -86,7 +86,7 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
                 }}
               >
                 {" "}
-                <strike>${price}</strike>
+                <>₹{price}</>
               </Typography>
             )}
           </Box>
