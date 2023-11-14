@@ -158,8 +158,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="firstname"
                           required
                           type="text"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -179,8 +179,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="lastname"
                           required
                           type="text"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -202,8 +202,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                       name="phonenumber"
                       required
                       type="number"
-                      //   value={accountDetails.firstname}
-                      //   onChange={handerInputChanges}
+                    //   value={accountDetails.firstname}
+                    //   onChange={handerInputChanges}
                     />
                   </FormControl>
                 </Grid>
@@ -223,8 +223,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                       name="email"
                       required
                       type="email"
-                      //   value={accountDetails.email}
-                      //   onChange={handerInputChanges}
+                    //   value={accountDetails.email}
+                    //   onChange={handerInputChanges}
                     />
                   </FormControl>
                 </Grid>
@@ -254,8 +254,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="streetaddress"
                           required
                           type="text"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -277,8 +277,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                       name="country"
                       required
                       type="text"
-                      //   value={accountDetails.firstname}
-                      //   onChange={handerInputChanges}
+                    //   value={accountDetails.firstname}
+                    //   onChange={handerInputChanges}
                     />
                   </FormControl>
                 </Grid>
@@ -298,8 +298,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                       name="towncity"
                       required
                       type="text"
-                      //   value={accountDetails.firstname}
-                      //   onChange={handerInputChanges}
+                    //   value={accountDetails.firstname}
+                    //   onChange={handerInputChanges}
                     />
                   </FormControl>
                 </Grid>
@@ -321,8 +321,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="state"
                           required
                           type="text"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -342,8 +342,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="zipcode"
                           required
                           type="number"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -390,8 +390,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="cardnumber"
                           required
                           type="number"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -415,8 +415,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="expirationdate"
                           required
                           type="number"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -436,8 +436,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                           name="cvccode"
                           required
                           type="number"
-                          //   value={accountDetails.firstname}
-                          //   onChange={handerInputChanges}
+                        //   value={accountDetails.firstname}
+                        //   onChange={handerInputChanges}
                         />
                       </FormControl>
                     </Grid>
@@ -537,8 +537,8 @@ const CheckoutDetails = ({ handleplaceOrderClick }) => {
                     name="input"
                     required
                     type="text"
-                    //   value={accountDetails.firstname}
-                    //   onChange={handerInputChanges}
+                  //   value={accountDetails.firstname}
+                  //   onChange={handerInputChanges}
                   />
                 </FormControl>
               </Grid>

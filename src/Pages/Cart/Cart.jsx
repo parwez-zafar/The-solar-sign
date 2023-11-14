@@ -3,6 +3,7 @@ import { Box, Button, Container, IconButton, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ShoppingCart from "../../Components/ShoppingCart";
 import CheckoutDetails from "../../Components/CheckoutDetails";
+import OrderComplete from "../../Components/OrderComplete";
 import PropTypes from "prop-types";
 
 const TabItem = ({
@@ -25,8 +26,8 @@ const TabItem = ({
       borderBottom: complete
         ? "2px solid #45B26B"
         : active
-        ? "2px solid black"
-        : "",
+          ? "2px solid black"
+          : "",
     }}
   >
     <IconButton
@@ -170,9 +171,10 @@ const Cart = () => {
       )}
       {activeTab === "3" && (
         <Box>
-          <Button onClick={handlePurchaseClick} width="100%">
+          {/* <Button onClick={handlePurchaseClick} width="100%">
             Purchase history
-          </Button>
+          </Button> */}
+          <OrderComplete handlePurchaseClick={handlePurchaseClick} />
         </Box>
       )}
     </Container>
