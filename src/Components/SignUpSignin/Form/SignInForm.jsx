@@ -10,9 +10,10 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "../../../Components/CustomButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import axios from "axios";
 
 const LinkStyle = {
   color: "black",
@@ -22,6 +23,7 @@ const LinkStyle = {
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -34,15 +36,32 @@ const SignInForm = () => {
     setRememberMe(!rememberMe);
   };
 
+  const navigate = useNavigate();
+
   // form submit
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    if (!user.email || !user.password) {
-      alert("fill mandatory fields ");
-      return;
+
+    try {
+      setIsloading(true);
+      if (!user.email || !user.password) {
+        throw new Error("Fill all fields!");
+      }
+      const response = await axios.post(
+        "https://solar-sign-backend.onrender.com/api/customer/login",
+        user
+      );
+      if (response.status === 200) {
+        localStorage.setItem("jwtToken", response?.data?.token);
+        navigate("/");
+        alert("Login Successfull");
+      }
+    } catch (error) {
+      console.log(error.message);
+      alert(error.message);
+    } finally {
+      setIsloading(false);
     }
-    console.log("submitted");
-    alert("form submitted");
   };
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -122,7 +141,7 @@ const SignInForm = () => {
           {/* <CustomButton>Sign in</CustomButton> */}
           <div onClick={handleLoginSubmit}>
             <CustomButton type="submit" wdth={"100%"}>
-              Sign In
+              {isLoading ? <p>Loading...</p> : "Sign In"}
             </CustomButton>
           </div>
 

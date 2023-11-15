@@ -1,4 +1,4 @@
-import { Stack,Rating } from "@mui/material";
+import { Stack, Rating } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ src, alt, categoryName }) => {
@@ -57,14 +57,20 @@ const ProductCard = ({ src, alt, categoryName }) => {
       marginTop: "3px",
     },
   };
-  const ratingStar=[1,2,3,4,5]
+  const ratingStar = [1, 2, 3, 4, 5];
   return (
     <Stack mb={5} width={265}>
-            <Link to={`${categoryName?`/product/category/${categoryName.split(' ').join('_')}`:'product-details'}`} style={{ textDecoration: "none" }}>
-
-      <Stack style={styles.container}>
-        <img src={src} alt={alt} height="150px" />
-      </Stack>
+      <Link
+        to={`${
+          categoryName
+            ? `/product/category/${categoryName.split(" ").join("_")}`
+            : "product-details"
+        }`}
+        style={{ textDecoration: "none" }}
+      >
+        <Stack style={styles.container}>
+          <img src={src} alt={alt} height="150px" />
+        </Stack>
         <Stack spacing={1}>
           {/* <Stack style={styles.ratingBox}>
             <Rating

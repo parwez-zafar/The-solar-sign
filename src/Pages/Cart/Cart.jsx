@@ -26,8 +26,8 @@ const TabItem = ({
       borderBottom: complete
         ? "2px solid #45B26B"
         : active
-          ? "2px solid black"
-          : "",
+        ? "2px solid black"
+        : "",
     }}
   >
     <IconButton

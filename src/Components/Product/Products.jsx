@@ -1,7 +1,3 @@
-
-
-
-
 import {
   Container,
   FormControl,
@@ -78,16 +74,18 @@ const styles = {
   },
 };
 const Products = () => {
-    const { category } = useParams();
-      const [allproducts, setAllproducts] = useState([]);
+  const { category } = useParams();
+  const [allproducts, setAllproducts] = useState([]);
 
-     const getsetproducts = async () => {
+  const getsetproducts = async () => {
     // console.log(import.meta.env.VITE_BASE_URL);
     const response = await axios.get(
-        `https://printsigns.onrender.com/api/products/category/${category.split('_').join(' ')}`
+      `https://printsigns.onrender.com/api/products/category/${category
+        .split("_")
+        .join(" ")}`
     );
     if (response.status === 200) {
-      console.log('dddddddddddddddddddddd',response.data?.products)
+      console.log("dddddddddddddddddddddd", response.data?.products);
       setAllproducts(response.data.products);
     }
   };
@@ -228,19 +226,19 @@ const Products = () => {
         </Grid> */}
         {/* <div className="text-center">Producs</div> */}
         <Grid item sx={{ mt: "2rem" }}>
-              <Typography
-                sx={{
-                  fontFamily: "Poppins",
-                  fontWeight: "400",
-                  fontSize: "34px",
-                  textAlign:"center",
-                  justifyContent:"center"
-                }}
-              >
-                {" "}
-               {category&& category.split('_').join(' ')} Products
-              </Typography>
-            </Grid>
+          <Typography
+            sx={{
+              fontFamily: "Poppins",
+              fontWeight: "400",
+              fontSize: "34px",
+              textAlign: "center",
+              justifyContent: "center",
+            }}
+          >
+            {" "}
+            {category && category.split("_").join(" ")} Products
+          </Typography>
+        </Grid>
 
         <Grid container sx={{ mt: "3rem" }}>
           <Grid
@@ -248,24 +246,32 @@ const Products = () => {
             sx={{ width: "100%", display: "flex", flexWrap: "wrap" }}
             gap={2}
           >
-            {allproducts.length>0?allproducts.map((item, index) => (
+            {allproducts.length > 0 ? (
+              allproducts.map((item, index) => (
+                <Grid
+                  key={index}
+                  sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
+                >
+                  <ProductsPageProduct
+                    src={item?.image[0]?.url}
+                    alt={item?.alt || "No image"}
+                    name={item.name}
+                    discountPrice={item.discountPrice}
+                    price={item.price}
+                    categories={item.categories}
+                  />
+                </Grid>
+              ))
+            ) : (
               <Grid
-                key={index}
-                sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
-              >
-                <ProductsPageProduct
-                  src={item?.image[0]?.url}
-                  alt={item?.alt||'No image'}
-                  name={item.name}
-                  discountPrice={item.discountPrice}
-                  price={item.price}
-                  categories={item.categories}
-                />
-              </Grid>
-            )):<Grid
-
-                container sx={{ mt: "3rem",mb:"8rem",textAlign:"center",  justifyContent:"center",                fontSize: "20px",
- }}
+                container
+                sx={{
+                  mt: "3rem",
+                  mb: "8rem",
+                  textAlign: "center",
+                  justifyContent: "center",
+                  fontSize: "20px",
+                }}
                 // sx={{
                 //   fontFamily: "Poppins",
                 //   fontWeight: "400",
@@ -273,11 +279,11 @@ const Products = () => {
                 //   textAlign:"center",
                 //   justifyContent:"center"
                 // }}
-            //   >
+                //   >
               >
-              No Product in THis Category! 
+                No Product in THis Category!
               </Grid>
-            }
+            )}
           </Grid>
         </Grid>
         <Grid

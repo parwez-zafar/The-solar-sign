@@ -30,6 +30,7 @@ const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [showNavLinks, setShowNavLinks] = React.useState(null);
+  const [logo, setLogo] = React.useState();
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -61,9 +62,10 @@ const Header = () => {
 
   const getLogo = async () => {
     // console.log(import.meta.env.VITE_BASE_URL);
-    const logo = await axios.get(
+    const logoData = await axios.get(
       "https://printsigns.onrender.com" + "/api/config"
     );
+    setLogo(logoData?.data.result[0].logo);
   };
 
   React.useEffect(() => {
@@ -183,6 +185,34 @@ const Header = () => {
     </Menu>
   );
 
+  const renderLogo = () => {
+    if (logo) {
+      return (
+        <img
+          src={logo.Headerlogo}
+          alt="Logo"
+          style={{ height: "40px", width: "auto", marginRight: "10px" }}
+        />
+      );
+    } else {
+      return (
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{
+            color: "#141718",
+            fontFamily: "Poppins",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          3legant.
+        </Typography>
+      );
+    }
+  };
+
   return (
     <Container>
       <Box sx={{ flexGrow: 1 }}>
@@ -197,20 +227,15 @@ const Header = () => {
               <MenuIcon />
             </IconButton>
           </Box>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                color: "#141718",
-                fontFamily: "Poppins",
-                fontWeight: 600,
-                cursor: "pointer",
-              }}
-            >
-              3legant.
-            </Typography>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            {renderLogo()}
           </Link>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Typography sx={{ display: "flex", flexGrow: 1 }}>

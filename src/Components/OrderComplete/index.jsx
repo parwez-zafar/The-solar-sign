@@ -1,2 +1,2 @@
-import OrderComplete from './OrderComplete.jsx';
+import OrderComplete from "./OrderComplete.jsx";
 export default OrderComplete;
