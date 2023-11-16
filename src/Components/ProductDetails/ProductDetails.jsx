@@ -3,11 +3,11 @@ import {
   ButtonGroup,
   Divider,
   Grid,
-  Rating,
+  // Rating,
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+// import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import CustomButton from "../CustomButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -18,10 +18,10 @@ import src4 from "../../assets/images/Tray Table/image4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-import tableBlack from "../../assets/images/table black.png";
-import tableWhite from "../../assets/images/table white.png";
-import tableRed from "../../assets/images/table red.png";
-import tableGrey from "../../assets/images/table grey.png";
+// import tableBlack from "../../assets/images/table black.png";
+// import tableWhite from "../../assets/images/table white.png";
+// import tableRed from "../../assets/images/table red.png";
+// import tableGrey from "../../assets/images/table grey.png";
 
 const styles = {
   img: {
@@ -85,6 +85,7 @@ const styles = {
     justifyContent: "center",
     alignItem: "center",
   },
+  details: { fontFamily: 'inter', fontWeight: '400', fontSize: '16px', color: '#6C7275' }
 };
 
 export default function ProductDetails() {
@@ -109,26 +110,26 @@ export default function ProductDetails() {
             Home
           </Link>{" "}
           &nbsp;{`>`}&nbsp;
-          <Link style={styles.linkStyle} to="/">
-            Shop
+          <Link style={styles.linkStyle} to="/shop?category">
+            Category
           </Link>{" "}
           &nbsp;{`>`}&nbsp;
-          <Link style={styles.linkStyle} to="/">
-            Living
+          <Link style={styles.linkStyle} to="/product-details">
+            Tray Table
           </Link>{" "}
-          &nbsp;{`>`}&nbsp;
+          {/* &nbsp;{`>`}&nbsp;
           <Link style={styles.linkStyle} to="/">
             Product
-          </Link>
+          </Link> */}
         </Typography>
         <Box>
           <Grid container spacing={5} style={{}}>
             <Grid item sm={12} xs={12} md={6} xl={6} style={{}}>
               {/* Add your left section here Parwez*/}
               <Box style={{ position: "relative" }}>
-                <Typography style={styles.newText}>NEW</Typography>
+                {/* <Typography style={styles.newText}>NEW</Typography> */}
 
-                <Typography style={styles.discountText}>-50%</Typography>
+                {/* <Typography style={styles.discountText}>-50%</Typography> */}
                 <ArrowBackIcon
                   fontSize="large"
                   style={styles.forwardArrow}
@@ -178,14 +179,14 @@ export default function ProductDetails() {
 
             <Grid item sm={12} xs={12} md={6} xl={6}>
               {/* Right section */}
-              <Box display={"flex"} marginBottom={2}>
+              {/* <Box display={"flex"} marginBottom={2}>
                 <Rating
                   readOnly
                   defaultValue={5}
                   sx={{ color: "black", marginRight: "0.5rem" }}
                 />
                 <Typography>11 Reviews</Typography>
-              </Box>
+              </Box> */}
               <Box marginBottom={3}>
                 <Typography
                   variant="h4"
@@ -233,8 +234,8 @@ export default function ProductDetails() {
                   </Typography>
                 </Box>
               </Box>
-              <Divider />
-              <Box my={3}>
+              {/* <Divider /> */}
+              {/* <Box my={3}>
                 <Typography
                   variant="body2"
                   style={{
@@ -336,9 +337,9 @@ export default function ProductDetails() {
                     </Typography>
                   </Box>
                 </Box>
-              </Box>
+              </Box> */}
               <Divider />
-              <Box my={3}>
+              {/* <Box my={3}>
                 <Typography
                   variant="body2"
                   style={{
@@ -351,8 +352,8 @@ export default function ProductDetails() {
                   Measurements:{" "}
                 </Typography>
                 <Typography>17 1/2x20 5/8</Typography>
-              </Box>
-              <Box my={3}>
+              </Box> */}
+              {/* <Box my={3}>
                 <Box display={"flex"} cursor>
                   <Typography
                     variant="body2"
@@ -373,7 +374,7 @@ export default function ProductDetails() {
                   <img src={tableRed} alt={tableRed} />
                   <img src={tableWhite} alt={tableWhite} />
                 </Box>
-              </Box>
+              </Box> */}
 
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <ButtonGroup variant="outlined" sx={{ background: "#F5F5F5" }}>
@@ -423,6 +424,19 @@ export default function ProductDetails() {
               </Box>
               <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }}>
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
+              </Box>
+              <Divider />
+
+              <Box my={3} sx={{ width: { xs: '90%', sm: '60%', md: '60%' }, display: 'flex', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column' }} cursor>
+
+                  <Typography sx={styles.details}>SKU</Typography>
+                  <Typography sx={styles.details}>CATEGORY</Typography>
+                </Box>
+                <Box>
+                  <Typography sx={{ ...styles.details, color: '#141718' }}>1117</Typography>
+                  <Typography sx={{ ...styles.details, color: '#141718' }}>Living Room, Bedroom</Typography>
+                </Box>
               </Box>
             </Grid>
           </Grid>
