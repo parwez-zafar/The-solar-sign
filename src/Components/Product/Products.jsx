@@ -85,7 +85,7 @@ const Products = () => {
         .join(" ")}`
     );
     if (response.status === 200) {
-      console.log("dddddddddddddddddddddd", response.data?.products);
+      // console.log("dddddddddddddddddddddd", response.data?.products);
       setAllproducts(response.data.products);
     }
   };
@@ -272,14 +272,14 @@ const Products = () => {
                   justifyContent: "center",
                   fontSize: "20px",
                 }}
-                // sx={{
-                //   fontFamily: "Poppins",
-                //   fontWeight: "400",
-                //   fontSize: "34px",
-                //   textAlign:"center",
-                //   justifyContent:"center"
-                // }}
-                //   >
+              // sx={{
+              //   fontFamily: "Poppins",
+              //   fontWeight: "400",
+              //   fontSize: "34px",
+              //   textAlign:"center",
+              //   justifyContent:"center"
+              // }}
+              //   >
               >
                 No Product in THis Category!
               </Grid>
