@@ -18,8 +18,6 @@ import src4 from "../../assets/images/Tray Table/image4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-import { addToCart } from "../../actions/cartActions";
-import { useDispatch } from "react-redux";
 // import tableBlack from "../../assets/images/table black.png";
 // import tableWhite from "../../assets/images/table white.png";
 // import tableRed from "../../assets/images/table red.png";
@@ -100,18 +98,12 @@ export default function ProductDetails() {
   const [imgUrl, setImgUrl] = useState(0);
   const imgarr = [src1, src2, src3, src4];
 
-  const dispatch = useDispatch();
-
   const increment = () => {
     setCount(count + 1);
   };
 
   const decrement = () => {
     if (count > 0) setCount(count - 1);
-  };
-
-  const addToCartHandler = () => {
-    dispatch(addToCart("1", count));
   };
 
   return (
@@ -277,10 +269,7 @@ export default function ProductDetails() {
                   WishList
                 </Button>
               </Box>
-              <Box
-                sx={{ display: "flex", py: 2, fontFamily: "Inter" }}
-                onClick={addToCartHandler}
-              >
+              <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }}>
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
               <Divider />
