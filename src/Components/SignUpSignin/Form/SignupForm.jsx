@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Stack,
   Typography,
@@ -14,7 +14,9 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import CustomButton from "../../../Components/CustomButton";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import axios from "axios";
+// import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, register } from "../../../actions/userActions";
 
 const LinkStyle = {
   color: "black",
@@ -23,14 +25,15 @@ const LinkStyle = {
 };
 
 const SignupForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const [isloading, setIsloading] = useState(false);
+  // const [isloading, setIsloading] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
     password: "",
   });
-
+  const { error, loading, isAuthenticated } = useSelector((state) => state.user)
   const navigate = useNavigate();
   const handerInputChanges = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -45,27 +48,41 @@ const SignupForm = () => {
   // form submit
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    try {
-      setIsloading(true);
-      if (!user.name || !user.email || !user.password) {
-        throw new Error("Fill all fields!");
-      }
-      const response = await axios.post(
-        "https://solar-sign-backend.onrender.com/api/customer/register",
-        user
-      );
-      if (response.status === 200) {
-        localStorage.setItem("jwtToken", response?.data?.token);
-        navigate("/");
-        alert("Registration Successfull");
-      }
-    } catch (error) {
-      console.log(error.message);
-      alert(error.message);
-    } finally {
-      setIsloading(false);
-    }
+    // try {
+    //   setIsloading(true);
+    //   if (!user.name || !user.email || !user.password) {
+    //     throw new Error("Fill all fields!");
+    //   }
+    //   const response = await axios.post(
+    //     "https://solar-sign-backend.onrender.com/api/customer/register",
+    //     user
+    //   );
+    //   if (response.status === 200) {
+    //     localStorage.setItem("jwtToken", response?.data?.token);
+    //     navigate("/");
+    //     alert("Registration Successfull");
+    //   }
+    // } catch (error) {
+    //   console.log(error.message);
+    //   alert(error.message);
+    // } finally {
+    //   setIsloading(false);
+    // }
+
+    dispatch(register(user))
+
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+      alert("Registration Successfull")
+    }
+    if (error) {
+      alert(error);
+      dispatch(clearErrors())
+    }
+  })
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -153,7 +170,7 @@ const SignupForm = () => {
           </Box>
           <div onClick={handleFormSubmit}>
             <CustomButton type="submit" wdth={"100%"}>
-              {isloading ? <p>Loading...</p> : "Sign Up"}
+              {loading ? <p>Loading...</p> : "Sign Up"}
             </CustomButton>
           </div>
 
