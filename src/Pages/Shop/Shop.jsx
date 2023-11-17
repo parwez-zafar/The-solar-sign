@@ -83,6 +83,7 @@ const Shop = () => {
 
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.products.product);
+  console.log(productData);
 
   useEffect(() => {
     dispatch(getAllProducts());
