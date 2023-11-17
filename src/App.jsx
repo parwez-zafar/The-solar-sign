@@ -10,11 +10,10 @@ import Root from "./Components/Root";
 import SignIn from "./Components/SignUpSignin/SignIn";
 import SignUp from "./Components/SignUpSignin/SignUp";
 import React from "react";
-import AuthForm from "./Pages/AuthForm";
 import ProductDetails from "./Components/ProductDetails";
 import Account from "./Pages/Account";
 import Cart from "./Pages/Cart";
-import Shop from './Pages/Shop'
+import Shop from "./Pages/Shop";
 import Products from "./Components/Product/Products";
 
 const router = createBrowserRouter(
@@ -22,14 +21,13 @@ const router = createBrowserRouter(
     <React.Fragment>
       <Route path="/" element={<Root />}>
         <Route index element={<Home />} />
-                <Route path="/product/category/:category" element={<Products />} />
+        <Route path="/product/category/:category" element={<Products />} />
 
         <Route path="product-details" element={<ProductDetails />} />
         <Route path="account" element={<Account />} />
         <Route path="cart" element={<Cart />} />
         <Route path="shop" element={<Shop />} />
 
-        <Route path="authform" element={<AuthForm />} />
         <Route path="signin" element={<SignIn />} />
         <Route path="signup" element={<SignUp />} />
       </Route>

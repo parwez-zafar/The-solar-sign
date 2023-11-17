@@ -18,6 +18,8 @@ import src4 from "../../assets/images/Tray Table/image4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../actions/cartActions";
+import { useDispatch } from "react-redux";
 // import tableBlack from "../../assets/images/table black.png";
 // import tableWhite from "../../assets/images/table white.png";
 // import tableRed from "../../assets/images/table red.png";
@@ -85,7 +87,12 @@ const styles = {
     justifyContent: "center",
     alignItem: "center",
   },
-  details: { fontFamily: 'inter', fontWeight: '400', fontSize: '16px', color: '#6C7275' }
+  details: {
+    fontFamily: "inter",
+    fontWeight: "400",
+    fontSize: "16px",
+    color: "#6C7275",
+  },
 };
 
 export default function ProductDetails() {
@@ -93,12 +100,18 @@ export default function ProductDetails() {
   const [imgUrl, setImgUrl] = useState(0);
   const imgarr = [src1, src2, src3, src4];
 
+  const dispatch = useDispatch();
+
   const increment = () => {
     setCount(count + 1);
   };
 
   const decrement = () => {
     if (count > 0) setCount(count - 1);
+  };
+
+  const addToCartHandler = () => {
+    dispatch(addToCart("1", count));
   };
 
   return (
@@ -117,19 +130,11 @@ export default function ProductDetails() {
           <Link style={styles.linkStyle} to="/product-details">
             Tray Table
           </Link>{" "}
-          {/* &nbsp;{`>`}&nbsp;
-          <Link style={styles.linkStyle} to="/">
-            Product
-          </Link> */}
         </Typography>
         <Box>
           <Grid container spacing={5} style={{}}>
             <Grid item sm={12} xs={12} md={6} xl={6} style={{}}>
-              {/* Add your left section here Parwez*/}
               <Box style={{ position: "relative" }}>
-                {/* <Typography style={styles.newText}>NEW</Typography> */}
-
-                {/* <Typography style={styles.discountText}>-50%</Typography> */}
                 <ArrowBackIcon
                   fontSize="large"
                   style={styles.forwardArrow}
@@ -178,15 +183,6 @@ export default function ProductDetails() {
             </Grid>
 
             <Grid item sm={12} xs={12} md={6} xl={6}>
-              {/* Right section */}
-              {/* <Box display={"flex"} marginBottom={2}>
-                <Rating
-                  readOnly
-                  defaultValue={5}
-                  sx={{ color: "black", marginRight: "0.5rem" }}
-                />
-                <Typography>11 Reviews</Typography>
-              </Box> */}
               <Box marginBottom={3}>
                 <Typography
                   variant="h4"
@@ -234,147 +230,6 @@ export default function ProductDetails() {
                   </Typography>
                 </Box>
               </Box>
-              {/* <Divider /> */}
-              {/* <Box my={3}>
-                <Typography
-                  variant="body2"
-                  style={{
-                    fontFamily: "Inter",
-                    color: "#6C7275",
-                    fontSize: "1rem",
-                    marginBottom: "1rem",
-                  }}
-                >
-                  Offer expires in:{" "}
-                </Typography>
-                <Box
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-
-                    alignItems: "flex-start",
-                    gap: "12px",
-                  }}
-                >
-                  <Box width={"80px"}>
-                    <Typography
-                      variant="h4"
-                      style={{
-                        background: "#F3F5F7",
-                        textAlign: "center",
-                        padding: "0.8rem",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      12
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      textAlign={"center"}
-                      style={{ color: "#6C7275", fontSize: "0.7" }}
-                    >
-                      Days
-                    </Typography>
-                  </Box>
-                  <Box width={"80px"}>
-                    <Typography
-                      variant="h4"
-                      style={{
-                        background: "#F3F5F7",
-                        textAlign: "center",
-                        padding: "0.8rem",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      12
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      textAlign={"center"}
-                      style={{ color: "#6C7275", fontSize: "0.7" }}
-                    >
-                      Hours
-                    </Typography>
-                  </Box>
-                  <Box width={"80px"}>
-                    <Typography
-                      variant="h4"
-                      style={{
-                        background: "#F3F5F7",
-                        textAlign: "center",
-                        padding: "0.8rem",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      45
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      textAlign={"center"}
-                      style={{ color: "#6C7275", fontSize: "0.7" }}
-                    >
-                      Minutes
-                    </Typography>
-                  </Box>
-                  <Box width={"80px"}>
-                    <Typography
-                      variant="h4"
-                      style={{
-                        background: "#F3F5F7",
-                        textAlign: "center",
-                        padding: "0.8rem",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      10
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      textAlign={"center"}
-                      style={{ color: "#6C7275", fontSize: "0.7" }}
-                    >
-                      Seconds
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box> */}
-              <Divider />
-              {/* <Box my={3}>
-                <Typography
-                  variant="body2"
-                  style={{
-                    fontFamily: "Inter",
-                    color: "#6C7275",
-                    fontSize: "1rem",
-                    marginBottom: "0.5rem",
-                  }}
-                >
-                  Measurements:{" "}
-                </Typography>
-                <Typography>17 1/2x20 5/8</Typography>
-              </Box> */}
-              {/* <Box my={3}>
-                <Box display={"flex"} cursor>
-                  <Typography
-                    variant="body2"
-                    style={{
-                      fontFamily: "Inter",
-                      color: "#6C7275",
-                      fontSize: "1rem",
-                      marginBottom: "0.5rem",
-                    }}
-                  >
-                    Choose Color
-                  </Typography>
-                  <ChevronRightIcon style={{ color: "#6C7275" }} />
-                </Box>
-                <Box>
-                  <img src={tableBlack} alt={tableBlack} />
-                  <img src={tableGrey} alt={tableGrey} />
-                  <img src={tableRed} alt={tableRed} />
-                  <img src={tableWhite} alt={tableWhite} />
-                </Box>
-              </Box> */}
 
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <ButtonGroup variant="outlined" sx={{ background: "#F5F5F5" }}>
@@ -422,20 +277,33 @@ export default function ProductDetails() {
                   WishList
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }}>
+              <Box
+                sx={{ display: "flex", py: 2, fontFamily: "Inter" }}
+                onClick={addToCartHandler}
+              >
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
               <Divider />
 
-              <Box my={3} sx={{ width: { xs: '90%', sm: '60%', md: '60%' }, display: 'flex', justifyContent: 'space-between' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column' }} cursor>
-
+              <Box
+                my={3}
+                sx={{
+                  width: { xs: "90%", sm: "60%", md: "60%" },
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box sx={{ display: "flex", flexDirection: "column" }} cursor>
                   <Typography sx={styles.details}>SKU</Typography>
                   <Typography sx={styles.details}>CATEGORY</Typography>
                 </Box>
                 <Box>
-                  <Typography sx={{ ...styles.details, color: '#141718' }}>1117</Typography>
-                  <Typography sx={{ ...styles.details, color: '#141718' }}>Living Room, Bedroom</Typography>
+                  <Typography sx={{ ...styles.details, color: "#141718" }}>
+                    1117
+                  </Typography>
+                  <Typography sx={{ ...styles.details, color: "#141718" }}>
+                    Living Room, Bedroom
+                  </Typography>
                 </Box>
               </Box>
             </Grid>

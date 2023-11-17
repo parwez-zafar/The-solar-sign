@@ -8,10 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import shopImage from "../../assets/images/shopImage.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShopData from "../../Data/ShopData";
 import ShopPageProduct from "../../Components/ShopPageProduct";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../store/Actions/productsActions";
+
 const styles = {
   img: {
     width: "100%",
@@ -77,6 +80,13 @@ const Shop = () => {
   const [categoryValue, setCategoryValue] = useState("All");
   const [priceValue, setPriceValue] = useState("All");
   const [selectedCategories, setSelectedCategories] = useState([]);
+
+  const dispatch = useDispatch();
+  const productData = useSelector((state) => state.products.product);
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
