@@ -61,11 +61,10 @@ const ProductCard = ({ src, alt, categoryName }) => {
   return (
     <Stack mb={5} width={265}>
       <Link
-        to={`${
-          categoryName
+        to={`${categoryName
             ? `/product/category/${categoryName.split(" ").join("_")}`
             : "product-details"
-        }`}
+          }`}
         style={{ textDecoration: "none" }}
       >
         <Stack style={styles.container}>

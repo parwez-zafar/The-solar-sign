@@ -10,7 +10,11 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
       width: "fit-content",
       marginBottom: "0.5rem",
     },
-    btnBox: { width: "100%", position: "absolute", bottom: "5%", left: "9%" },
+    btnBox: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
     descriptionBox: {
       width: "55%",
       display: "flex",
@@ -54,17 +58,11 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
   };
   return (
     <Grid item mb={3}>
-      <Grid item sx={styles.container}>
-        {/* <Typography sx={styles.newText}> NEW</Typography> */}
-        {/* <Typography sx={styles.discountText}>-50%</Typography> */}
-        <img src={src} alt={alt} style={{ width: "100%", height: "100%" }} />
-        <Box sx={styles.btnBox}>
-          <CustomButton type="button" wdth="80%">
-            Add to cart
-          </CustomButton>
-        </Box>
-      </Grid>
-      <Link to="/product-details" style={{ textDecoration: "none" }}>
+      <Link to={"/product-details"} style={{ textDecoration: "none" }}>
+        <Grid item sx={styles.container}>
+          <img src={src} alt={alt} style={{ width: "100%", height: "100%" }} />
+
+        </Grid>
         <Grid>
           <Typography mb={1} sx={styles.nameText}>
             {name}
@@ -92,6 +90,11 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
           </Box>
         </Grid>
       </Link>
+      <Box sx={styles.btnBox}>
+        <CustomButton type="button" wdth="80%">
+          Add to cart
+        </CustomButton>
+      </Box>
     </Grid>
   );
 };

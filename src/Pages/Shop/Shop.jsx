@@ -10,10 +10,11 @@ import {
 import shopImage from "../../assets/images/shopImage.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ShopData from "../../Data/ShopData";
+// import ShopData from "../../Data/ShopData";
 import ShopPageProduct from "../../Components/ShopPageProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../store/Actions/productsActions";
+// import ProductData from "../../Data/ProductData/ProductData";
 
 const styles = {
   img: {
@@ -85,6 +86,8 @@ const Shop = () => {
   const productData = useSelector((state) => state.products.product);
   console.log(productData);
 
+  // console.log("prev product data", typeof ShopData);
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -105,18 +108,19 @@ const Shop = () => {
       setPriceValue(value);
     }
   };
-  let filteredItems = ShopData.filter((item) => {
+  let filteredItems = productData?.filter((item) => {
     // Filter based on selected categories
     const categoryMatch =
       categoryValue === "All" || item.category === categoryValue;
 
     const priceMatch =
       priceValue === "All" ||
-      (parseFloat(item.discountPrice) >= parseFloat(priceValue.split("-")[0]) &&
-        parseFloat(item.discountPrice) <= parseFloat(priceValue.split("-")[1]));
+      (parseFloat(item.price) >= parseFloat(priceValue.split("-")[0]) &&
+        parseFloat(item.price) <= parseFloat(priceValue.split("-")[1]));
 
     return categoryMatch && priceMatch;
   });
+  console.log("product data", filteredItems)
   // Pagination
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
@@ -194,11 +198,13 @@ const Shop = () => {
                 onChange={handleChange}
               >
                 <MenuItem value="All">All</MenuItem>
-                <MenuItem value="Living Room">Living Room</MenuItem>
-                <MenuItem value="Bedroom">Bedroom</MenuItem>
-                <MenuItem value="Bathroom">Bathroom</MenuItem>
-                <MenuItem value="Dinning">Dinning</MenuItem>
-                <MenuItem value="Outdoor">Outdoor</MenuItem>
+                <MenuItem value="Personal">Personal</MenuItem>
+                <MenuItem value="Holiday Season">Holiday Season</MenuItem>
+                <MenuItem value="Spare Parts">Spare Parts</MenuItem>
+                <MenuItem value="RealEstate Signs">RealEstate Signs</MenuItem>
+                <MenuItem value="Political Signs">Political Signs</MenuItem>
+                <MenuItem value="Hollo catregory 2">Hollo catregory 2</MenuItem>
+                <MenuItem value="Business">Business</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -224,21 +230,64 @@ const Shop = () => {
             sx={{ width: "100%", display: "flex", flexWrap: "wrap" }}
             gap={2}
           >
-            {filteredItems.slice(startIndex, endIndex).map((item, index) => (
-              <Grid
-                key={index}
-                sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
-              >
-                <ShopPageProduct
-                  src={item.src}
-                  alt={item.alt}
-                  name={item.name}
-                  discountPrice={item.discountPrice}
-                  price={item.price}
-                  categories={item.categories}
-                />
-              </Grid>
-            ))}
+            {
+              filteredItems && filteredItems.length !== 0 ? (
+                filteredItems?.slice(startIndex, endIndex).map((item, index) => (
+                  <Grid
+                    key={index}
+                    sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
+                  >
+                    <ShopPageProduct
+                      src={item.image[0].url}
+                      // alt={item.alt}
+                      alt="image"
+                      name={item.name}
+                      discountPrice={item.price}
+                      // price={item.price}
+                      categories={item.category}
+                    />
+                  </Grid>
+                ))
+              )
+                :
+                (
+                  <Grid
+                    container
+                    sx={{
+                      mt: "3rem",
+                      mb: "8rem",
+                      textAlign: "center",
+                      justifyContent: "center",
+                      fontSize: "20px",
+                    }}
+                  // sx={{
+                  //   fontFamily: "Poppins",
+                  //   fontWeight: "400",
+                  //   fontSize: "34px",
+                  //   textAlign:"center",
+                  //   justifyContent:"center"
+                  // }}
+                  //   >
+                  >
+                    Product Not Found!
+                  </Grid>
+                )
+            }
+            {/* <Grid
+              // key={index}
+              sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
+            >
+              <ShopPageProduct
+                src={productData && productData[1].image[0].url}
+                // alt={item.alt}
+                alt="image"
+                name={productData && productData[0].name}
+                discountPrice={productData && productData[0].price}
+                // price={item.price}
+                categories={productData && productData[0].category}
+              />
+            </Grid> */}
+
           </Grid>
         </Grid>
         <Grid
@@ -248,11 +297,14 @@ const Shop = () => {
           justifyContent="center"
           mb={2}
         >
-          <Pagination
-            count={Math.ceil(ShopData.length / itemsPerPage)}
-            page={page}
-            onChange={handleChangePage}
-          />
+          {
+            filteredItems &&
+            <Pagination
+              count={Math.ceil(filteredItems?.length / itemsPerPage)}
+              page={page}
+              onChange={handleChangePage}
+            />
+          }
         </Grid>
       </Grid>
     </Container>
