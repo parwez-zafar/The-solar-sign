@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Button, Container, IconButton, Typography } from "@mui/material";
+import { Box, Container, IconButton, Typography } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import ShoppingCart from "../../Components/ShoppingCart";
 import CheckoutDetails from "../../Components/CheckoutDetails";
 import OrderComplete from "../../Components/OrderComplete";
 import PropTypes from "prop-types";
+
 
 const TabItem = ({
   label,
@@ -26,8 +27,8 @@ const TabItem = ({
       borderBottom: complete
         ? "2px solid #45B26B"
         : active
-        ? "2px solid black"
-        : "",
+          ? "2px solid black"
+          : "",
     }}
   >
     <IconButton
@@ -72,6 +73,10 @@ TabItem.propTypes = {
 };
 
 const Cart = () => {
+
+
+
+
   const [activeTab, setActiveTab] = React.useState("1");
   const [isShoppingComplete, setIsShoppingComplete] = React.useState(false);
   const [isCheckoutComplete, setIsCheckoutComplete] = React.useState(false);

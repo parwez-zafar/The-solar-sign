@@ -7,8 +7,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 // import src2 from "../../assets/images/Tray Table/image2.png";
 // import src3 from "../../assets/images/Tray Table/image3.png";
 // import src4 from "../../assets/images/Tray Table/image4.png";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+// import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+// import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -98,10 +98,37 @@ export default function ProductDetails() {
   };
   const dispatch = useDispatch();
   const productsDetailsData = useSelector((state) => state.productDetails);
+  // console.log("product Details Data", productsDetailsData);
   const { id } = useParams();
   useEffect(() => {
     dispatch(getSingleProductDetails(id));
   }, [dispatch, id]);
+
+
+  const addToCartHandler = () => {
+    // Get the existing cart data from localStorage
+    const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Find the index of the product in the cart array
+    const productIndex = existingCart.findIndex((item) => item.product._id === productsDetailsData._id);
+
+    if (productIndex !== -1) {
+      // If the product is already in the cart, update the quantity
+      existingCart[productIndex].quantity = count;
+    } else {
+      // If the product is not in the cart, add it to the array
+      existingCart.push({
+        product: productsDetailsData,
+        quantity: count,
+      });
+    }
+
+    // Save the updated cart data to localStorage
+    localStorage.setItem('cart', JSON.stringify(existingCart));
+    alert('add to cart')
+  }
+
+
   return (
     <Container>
       <Box sx={{ my: 6 }}>
@@ -134,12 +161,14 @@ export default function ProductDetails() {
                   }}
                 /> */}
 
-                <img
-                  src={productsDetailsData.image[0].url}
-                  alt={"alt"}
-                  style={styles.img}
-                />
+                {productsDetailsData.image &&
+                  <img
+                    src={productsDetailsData.image[0].url}
+                    alt={"alt"}
+                    style={styles.img}
+                  />
 
+                }
                 {/* <ArrowForwardIcon
                   fontSize="large"
                   style={styles.backwordArrow}
@@ -259,7 +288,7 @@ export default function ProductDetails() {
                   WishList
                 </Button>
               </Box>
-              <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }}>
+              <Box sx={{ display: "flex", py: 2, fontFamily: "Inter" }} onClick={addToCartHandler}>
                 <CustomButton wdth={"100%"}>Add To Cart</CustomButton>
               </Box>
               <Divider />
