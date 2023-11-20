@@ -22,7 +22,10 @@ import { Link } from "react-router-dom";
 // import tableWhite from "../../assets/images/table white.png";
 // import tableRed from "../../assets/images/table red.png";
 // import tableGrey from "../../assets/images/table grey.png";
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSingleProductDetails } from "../../store/Actions/productsActions";
+import { useParams } from "react-router-dom";
 const styles = {
   img: {
     width: "100%",
@@ -105,7 +108,15 @@ export default function ProductDetails() {
   const decrement = () => {
     if (count > 0) setCount(count - 1);
   };
-
+  const dispatch = useDispatch();
+  // const params = useParams();
+  const productsDetailsData = useSelector((state) => state.productDetails);
+  const { id } = useParams();
+  console.log("product Id ", id);
+  console.log(productsDetailsData);
+  useEffect(() => {
+    dispatch(getSingleProductDetails(id));
+  }, [dispatch, id]);
   return (
     <>
       <Container>
