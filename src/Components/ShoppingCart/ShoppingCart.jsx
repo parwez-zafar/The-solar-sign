@@ -18,15 +18,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import PropTypes from "prop-types";
-import ShoppingCartData from "../../Data/ShoppingCartData";
 import { useEffect, useState } from "react";
 import CustomButton from "../CustomButton";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getCartItem } from "../../store/Actions/productsActions";
 const styles = {
   headingStyle: {
     fontFamily: "inter",
     fontWeight: "600",
     fontSize: "16px",
     color: "#121212",
+    width: "70%",
     borderBottom: "1px solid black",
   },
   innerText: { fontFamily: "inter", fontWeight: "400", fontSize: "16px" },
@@ -41,50 +44,61 @@ const styles = {
 };
 
 const ShoppingCart = ({ handelCheckoutClick }) => {
-  const matches = useMediaQuery("(min-width:1200px)");
+
+
+
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state) => state.cart);
 
   const [quantities, setQuantities] = useState(
-    ShoppingCartData.map((item) => item.quantity)
+    cartItem.map((item) => {
+      return item.quantity
+    })
   );
-
   const [individualSubtotals, setIndividualSubtotals] = useState(
-    ShoppingCartData.map((item) => item.price * item.quantity)
+    cartItem.map((item) => {
+      return (item.product.price * item.quantity)
+    })
   );
+  useEffect(() => {
+    dispatch(getCartItem());
+  }, [dispatch]);
 
-  const overallTotal = individualSubtotals.reduce(
-    (total, subtotal) => total + subtotal,
-    0
-  );
+  const matches = useMediaQuery("(min-width:1200px)");
 
-  const [totalPrice, setTotalPrice] = useState(overallTotal);
+  const handleDecrease = (index) => {
+
+
+
+    const temp_quantities = [...quantities];
+    temp_quantities[index] = Math.max(1, temp_quantities[index] - 1);
+    setQuantities(temp_quantities)
+
+    const temp_subtotal = [...individualSubtotals];
+    temp_subtotal[index] = cartItem[index].product.price * temp_quantities[index];
+    setIndividualSubtotals(temp_subtotal)
+
+
+  };
+  const handleIncrease = (index) => {
+    const temp_quantities = [...quantities];
+    temp_quantities[index] = temp_quantities[index] + 1;
+    setQuantities(temp_quantities)
+
+
+    const temp_subtotal = [...individualSubtotals];
+    temp_subtotal[index] = cartItem[index].product.price * temp_quantities[index];
+    setIndividualSubtotals(temp_subtotal)
+  };
+
+  const totalPrice = individualSubtotals.reduce((acc, subtotal) => acc + subtotal, 0);
+
+
 
   const [selectedValue, setSelectedValue] = useState("free");
 
-  const handleDecrease = (index) => {
-    const updatedQuantities = [...quantities];
-    updatedQuantities[index] = Math.max(1, updatedQuantities[index] - 1);
-    setQuantities(updatedQuantities);
 
-    const updatedIndividualSubtotals = [...individualSubtotals];
-    updatedIndividualSubtotals[index] =
-      updatedQuantities[index] * ShoppingCartData[index].price;
-    setIndividualSubtotals(updatedIndividualSubtotals);
-  };
 
-  const handleIncrease = (index) => {
-    const updatedQuantities = [...quantities];
-    updatedQuantities[index] = updatedQuantities[index] + 1;
-    setQuantities(updatedQuantities);
-
-    const updatedIndividualSubtotals = [...individualSubtotals];
-    updatedIndividualSubtotals[index] =
-      updatedQuantities[index] * ShoppingCartData[index].price;
-    setIndividualSubtotals(updatedIndividualSubtotals);
-  };
-
-  useEffect(() => {
-    setTotalPrice(overallTotal);
-  }, [overallTotal]);
 
   // Stae for Radio
 
@@ -113,6 +127,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                   elevation={0}
                   style={{
                     borderBottom: "1.5px solid rgb(207 210 213)",
+                    // width: '70%',
                     borderRadius: "0",
                   }}
                 >
@@ -136,7 +151,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {ShoppingCartData.map((row, index) => (
+                      {cartItem.map((row, index) => (
                         <TableRow
                           key={index}
                           style={{ padding: "1rem" }}
@@ -146,9 +161,9 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                         >
                           <TableCell component="th" scope="row">
                             {/* {row.product} */}
-                            <Box sx={{ display: "flex" }}>
+                            <Box sx={{ display: "flex", width: '50%' }}>
                               <Grid>
-                                <img src={row.product.src} alt="" />
+                                <img style={{ height: '100%', width: '100%' }} src={row.product.image[0].url} alt="" />
                               </Grid>
                               <Grid>
                                 <Typography
@@ -157,11 +172,12 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                                     fontWeight: "600",
                                     fontSize: "14px",
                                     color: "#141718",
+                                    ml: '10px'
                                   }}
                                 >
                                   {row.product.name}
                                 </Typography>
-                                <Typography
+                                {/* <Typography
                                   sx={{
                                     fontFamily: "inter",
                                     fontWeight: "400",
@@ -170,15 +186,16 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                                   }}
                                 >
                                   Color : {row.product.color}
-                                </Typography>
+                                </Typography> */}
                                 <Box
                                   sx={{
                                     color: "#6C7275",
                                     width: "105%",
                                     display: "flex",
                                     alignItems: "center",
-                                    justifyContent: "space-between",
+                                    // justifyContent: "space-between",
                                     cursor: "pointer",
+                                    ml: '10px'
 
                                     // border: 'solid'
                                   }}
@@ -197,13 +214,13 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                               </Grid>
                             </Box>
                           </TableCell>
-                          <TableCell>
+                          <TableCell >
                             <Box
                               sx={{
                                 border: "1px solid #6C7275",
                                 borderRadius: "4px",
                                 height: "3%",
-                                width: "67%",
+                                width: "60%",
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center",
@@ -233,7 +250,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                               color: "#121212",
                             }}
                           >
-                            ${row.price}
+                            ${row.product.price}
                           </TableCell>
                           <TableCell
                             sx={{
@@ -243,8 +260,8 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                               color: "#121212",
                             }}
                           >
-                            {/* ${row.subtotal} */}${individualSubtotals[index]}
-                            .00
+                            {/* ${row.subtotal}${individualSubtotals[index]} */}
+                            ${individualSubtotals[index]}
                           </TableCell>
                         </TableRow>
                       ))}
@@ -252,7 +269,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                   </Table>
                 </TableContainer>
               ) : (
-                ShoppingCartData.map((item, i) => (
+                cartItem.map((item, i) => (
                   <Grid
                     key={i}
                     container
@@ -260,23 +277,24 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                     display="flex"
                     justifyContent="space-between"
                   >
-                    <Grid item>
-                      <Box sx={{ display: "flex" }}>
-                        <Grid>
-                          <img src={item.product.src} alt="" />
+                    <Grid item sx={{ width: '50vw' }}>
+                      <Box sx={{ display: "flex", }}>
+                        <Grid sx={{ height: '15vh', width: '15vw', display: 'flex', justifyContent: 'center', mr: '1rem' }}>
+                          <img style={{ height: '100%', width: '100%' }} src={item.product.image[0].url} alt="" />
                         </Grid>
-                        <Grid>
+                        <Grid >
                           <Typography
                             sx={{
                               fontFamily: "inter",
                               fontWeight: "600",
                               fontSize: "14px",
                               color: "#141718",
+                              mb: '1rem'
                             }}
                           >
                             {item.product.name}
                           </Typography>
-                          <Typography
+                          {/* <Typography
                             sx={{
                               fontFamily: "inter",
                               fontWeight: "400",
@@ -285,7 +303,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                             }}
                           >
                             Color : {item.product.color}
-                          </Typography>
+                          </Typography> */}
                           <Box
                             sx={{
                               border: "1px solid #6C7275",
@@ -325,7 +343,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                           color: "#121212",
                         }}
                       >
-                        {item.price}
+                        {item.product.price}
                       </Typography>
                       <Box display="flex" justifyContent="flex-end">
                         <ClearIcon fontSize="medium" />
@@ -551,7 +569,8 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                     fontSize: "16px",
                   }}
                 >
-                  ${overallTotal}.00
+                  {/* ${overallTotal}.00 */}
+                  ${totalPrice}
                 </Typography>
               </Box>
               <Box
@@ -580,7 +599,8 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                     fontSize: "20px",
                   }}
                 >
-                  ${totalPrice}.00
+                  {/* ${totalPrice}.00 */}
+                  ${totalPrice}
                 </Typography>
               </Box>
               <Box onClick={handelCheckoutClick}>
