@@ -10,11 +10,9 @@ import {
 import shopImage from "../../assets/images/shopImage.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-// import ShopData from "../../Data/ShopData";
 import ShopPageProduct from "../../Components/ShopPageProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../store/Actions/productsActions";
-// import ProductData from "../../Data/ProductData/ProductData";
 
 const styles = {
   img: {
@@ -85,8 +83,6 @@ const Shop = () => {
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.products.product);
 
-  // console.log("prev product data", typeof ShopData);
-
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -108,7 +104,6 @@ const Shop = () => {
     }
   };
   let filteredItems = productData?.filter((item) => {
-    // Filter based on selected categories
     const categoryMatch =
       categoryValue === "All" || item.category === categoryValue;
 
@@ -229,45 +224,37 @@ const Shop = () => {
             sx={{ width: "100%", display: "flex", flexWrap: "wrap" }}
             gap={2}
           >
-            {
-              filteredItems && filteredItems.length !== 0 ? (
-                filteredItems?.slice(startIndex, endIndex).map((item, index) => (
-                  <Grid
-                    key={index}
-                    sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
-                  >
-                    <ShopPageProduct
-                      src={item.image[0].url}
-                      // alt={item.alt}
-                      alt="image"
-                      name={item.name}
-                      discountPrice={item.price}
-                      // price={item.price}
-                      categories={item.category}
-                      id={item._id}
-                    />
-                  </Grid>
-                ))
-              )
-                :
-                (
-                  <Grid
-                    container
-                    sx={{
-                      mt: "3rem",
-                      mb: "8rem",
-                      textAlign: "center",
-                      justifyContent: "center",
-                      fontSize: "20px",
-                    }}
-
-                  >
-                    Product Not Found!
-                  </Grid>
-                )
-            }
-
-
+            {filteredItems && filteredItems.length !== 0 ? (
+              filteredItems?.slice(startIndex, endIndex).map((item, index) => (
+                <Grid
+                  key={index}
+                  sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
+                >
+                  <ShopPageProduct
+                    src={item.image[0].url}
+                    // alt={item.alt}
+                    alt="image"
+                    name={item.name}
+                    price={item.price}
+                    categories={item.category}
+                    id={item._id}
+                  />
+                </Grid>
+              ))
+            ) : (
+              <Grid
+                container
+                sx={{
+                  mt: "3rem",
+                  mb: "8rem",
+                  textAlign: "center",
+                  justifyContent: "center",
+                  fontSize: "20px",
+                }}
+              >
+                Product Not Found!
+              </Grid>
+            )}
           </Grid>
         </Grid>
         <Grid
@@ -277,14 +264,13 @@ const Shop = () => {
           justifyContent="center"
           mb={2}
         >
-          {
-            filteredItems &&
+          {filteredItems && (
             <Pagination
               count={Math.ceil(filteredItems?.length / itemsPerPage)}
               page={page}
               onChange={handleChangePage}
             />
-          }
+          )}
         </Grid>
       </Grid>
     </Container>

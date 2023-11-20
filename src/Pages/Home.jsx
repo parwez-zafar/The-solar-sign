@@ -9,8 +9,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-// import ProductCard from "../Components/Product/Product";
-import ProductData from "../Data/ProductData/ProductData";
 import Product from "../Components/Product";
 import axios from "axios";
 
@@ -36,14 +34,12 @@ const Home = () => {
       window.removeEventListener("resize", handleWindowResize);
     };
   }, []);
-  // console.log("size ", windowSize);
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
     return { innerWidth, innerHeight };
   }
 
   const getCategories = async () => {
-    // console.log(import.meta.env.VITE_BASE_URL);
     const response = await axios.get(
       "https://printsigns.onrender.com" + "/api/category/getCategories"
     );
@@ -196,8 +192,6 @@ const Home = () => {
                 src={category.categoryImage.secure_url}
                 alt={category.categoryName}
                 categoryName={category.categoryName}
-                // description2={item.description2}
-                // price={item.price}
                 style={{
                   width: "auto",
                   margin: "10px 10px",

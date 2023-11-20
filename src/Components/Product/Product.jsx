@@ -1,5 +1,6 @@
-import { Stack, Rating } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const ProductCard = ({ src, alt, categoryName }) => {
   const styles = {
@@ -57,29 +58,20 @@ const ProductCard = ({ src, alt, categoryName }) => {
       marginTop: "3px",
     },
   };
-  const ratingStar = [1, 2, 3, 4, 5];
   return (
     <Stack mb={5} width={265}>
       <Link
-        to={`${categoryName
+        to={`${
+          categoryName
             ? `/product/category/${categoryName.split(" ").join("_")}`
             : "product-details"
-          }`}
+        }`}
         style={{ textDecoration: "none" }}
       >
         <Stack style={styles.container}>
           <img src={src} alt={alt} height="150px" />
         </Stack>
         <Stack spacing={1}>
-          {/* <Stack style={styles.ratingBox}>
-            <Rating
-              name="customized-color"
-              readOnly
-              defaultValue={ratingStar}
-              precision={0.5}
-              sx={{ color: 'black' }}
-            />
-          </Stack> */}
           <h3
             style={{
               fontFamily: "Inter",
@@ -97,6 +89,12 @@ const ProductCard = ({ src, alt, categoryName }) => {
       </Link>
     </Stack>
   );
+};
+
+ProductCard.propTypes = {
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired,
 };
 
 export default ProductCard;

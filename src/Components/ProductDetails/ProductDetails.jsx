@@ -1,27 +1,15 @@
-import {
-  Button,
-  ButtonGroup,
-  Divider,
-  Grid,
-  // Rating,
-  Typography,
-} from "@mui/material";
+import { Button, ButtonGroup, Divider, Grid, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
-// import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useState } from "react";
 import CustomButton from "../CustomButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import src1 from "../../assets/images/Tray Table/image1.png";
-import src2 from "../../assets/images/Tray Table/image2.png";
-import src3 from "../../assets/images/Tray Table/image3.png";
-import src4 from "../../assets/images/Tray Table/image4.png";
+// import src1 from "../../assets/images/Tray Table/image1.png";
+// import src2 from "../../assets/images/Tray Table/image2.png";
+// import src3 from "../../assets/images/Tray Table/image3.png";
+// import src4 from "../../assets/images/Tray Table/image4.png";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link } from "react-router-dom";
-// import tableBlack from "../../assets/images/table black.png";
-// import tableWhite from "../../assets/images/table white.png";
-// import tableRed from "../../assets/images/table red.png";
-// import tableGrey from "../../assets/images/table grey.png";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProductDetails } from "../../store/Actions/productsActions";
@@ -98,8 +86,8 @@ const styles = {
 
 export default function ProductDetails() {
   const [count, setCount] = useState(0);
-  const [imgUrl, setImgUrl] = useState(0);
-  const imgarr = [src1, src2, src3, src4];
+  // const [imgUrl, setImgUrl] = useState(0);
+  // const imgarr = [src1, src2, src3, src4];
 
   const increment = () => {
     setCount(count + 1);
@@ -109,61 +97,64 @@ export default function ProductDetails() {
     if (count > 0) setCount(count - 1);
   };
   const dispatch = useDispatch();
-  // const params = useParams();
   const productsDetailsData = useSelector((state) => state.productDetails);
   const { id } = useParams();
-  console.log("product Id ", id);
-  console.log(productsDetailsData);
   useEffect(() => {
     dispatch(getSingleProductDetails(id));
   }, [dispatch, id]);
   return (
-    <>
-      <Container>
+    <Container>
+      <Box sx={{ my: 6 }}>
         {" "}
         <Typography variant="body2" mb={1}>
           <Link style={styles.linkStyle} to="/">
             Home
           </Link>{" "}
           &nbsp;{`>`}&nbsp;
-          <Link style={styles.linkStyle} to="/shop?category">
-            Category
+          <Link
+            style={styles.linkStyle}
+            to={`/product/category/${productsDetailsData.category}`}
+          >
+            {productsDetailsData.category}
           </Link>{" "}
           &nbsp;{`>`}&nbsp;
           <Link style={styles.linkStyle} to="/product-details">
-            Tray Table
+            {productsDetailsData.name}
           </Link>{" "}
         </Typography>
         <Box>
           <Grid container spacing={5} style={{}}>
             <Grid item sm={12} xs={12} md={6} xl={6} style={{}}>
               <Box style={{ position: "relative" }}>
-                <ArrowBackIcon
+                {/* <ArrowBackIcon
                   fontSize="large"
                   style={styles.forwardArrow}
                   onClick={() => {
                     imgUrl == 0 ? setImgUrl(3) : setImgUrl(imgUrl - 1);
                   }}
+                /> */}
+
+                <img
+                  src={productsDetailsData.image[0].url}
+                  alt={"alt"}
+                  style={styles.img}
                 />
 
-                <img src={imgarr[imgUrl]} alt={"alt"} style={styles.img} />
-
-                <ArrowForwardIcon
+                {/* <ArrowForwardIcon
                   fontSize="large"
                   style={styles.backwordArrow}
                   onClick={() => {
                     imgUrl == 3 ? setImgUrl(0) : setImgUrl(imgUrl + 1);
                   }}
-                />
+                /> */}
               </Box>
 
-              <Box
+              {/* <Box
                 display={{ xs: "none", sm: "flex" }}
                 alignItems={"center"}
                 justifyContent={"space-between"}
                 mb={5}
               >
-                {/* multiple image */}
                 <img
                   src={src2}
                   alt={"alt"}
@@ -182,7 +173,7 @@ export default function ProductDetails() {
                   style={styles.anotherImg}
                   onClick={() => setImgUrl(3)}
                 />
-              </Box>
+              </Box> */}
             </Grid>
 
             <Grid item sm={12} xs={12} md={6} xl={6}>
@@ -195,7 +186,7 @@ export default function ProductDetails() {
                     marginBottom: "1rem",
                   }}
                 >
-                  Tray Table
+                  {productsDetailsData.name}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -206,9 +197,7 @@ export default function ProductDetails() {
                     marginBottom: "1rem",
                   }}
                 >
-                  Buy one or buy a few and make every space where you sit more
-                  convenient. Light and easy to move around with removable tray
-                  top, handy for serving snacks.
+                  {productsDetailsData.description}
                 </Typography>
                 <Box display={"flex"} alignItems={"center"}>
                   <Typography
@@ -219,17 +208,7 @@ export default function ProductDetails() {
                       marginRight: "1rem",
                     }}
                   >
-                    $199.00
-                  </Typography>
-                  <Typography
-                    // variant="p"
-                    style={{
-                      fontFamily: "Inter",
-                      color: "#6C7275",
-                      textDecoration: "line-through",
-                    }}
-                  >
-                    $400.00
+                    {productsDetailsData.price}
                   </Typography>
                 </Box>
               </Box>
@@ -294,22 +273,18 @@ export default function ProductDetails() {
                 }}
               >
                 <Box sx={{ display: "flex", flexDirection: "column" }} cursor>
-                  <Typography sx={styles.details}>SKU</Typography>
                   <Typography sx={styles.details}>CATEGORY</Typography>
                 </Box>
                 <Box>
                   <Typography sx={{ ...styles.details, color: "#141718" }}>
-                    1117
-                  </Typography>
-                  <Typography sx={{ ...styles.details, color: "#141718" }}>
-                    Living Room, Bedroom
+                    {productsDetailsData.category}
                   </Typography>
                 </Box>
               </Box>
             </Grid>
           </Grid>
         </Box>
-      </Container>
-    </>
+      </Box>
+    </Container>
   );
 }
