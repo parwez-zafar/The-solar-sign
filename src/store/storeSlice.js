@@ -19,9 +19,20 @@ const storeSlice = createSlice({
     },
     getCart: (state, action) => {
       state.cart = action.payload;
+    },
+    increaseCartQuantity: (state, action) => {
+      const updatedCart = action.payload;
+      state.cart = [...updatedCart];
+    },
+    decreaseCartQuantity: (state, action) => {
+      const updatedCart = action.payload
+      state.cart = [...updatedCart]
+    },
+    getPrice: (state, action) => {
+      state.subtotal = action.payload
     }
   },
 });
 
-export const { getProducts, getProductDetails, getCart } = storeSlice.actions;
+export const { getProducts, getProductDetails, getCart, increaseCartQuantity, decreaseCartQuantity, getPrice } = storeSlice.actions;
 export default storeSlice.reducer;
