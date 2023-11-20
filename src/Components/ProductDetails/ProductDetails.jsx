@@ -85,7 +85,7 @@ const styles = {
 };
 
 export default function ProductDetails() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   // const [imgUrl, setImgUrl] = useState(0);
   // const imgarr = [src1, src2, src3, src4];
 
@@ -94,7 +94,7 @@ export default function ProductDetails() {
   };
 
   const decrement = () => {
-    if (count > 0) setCount(count - 1);
+    if (count > 1) setCount(count - 1);
   };
   const dispatch = useDispatch();
   const productsDetailsData = useSelector((state) => state.productDetails);
@@ -106,26 +106,28 @@ export default function ProductDetails() {
 
 
   const addToCartHandler = () => {
-    // Get the existing cart data from localStorage
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Find the index of the product in the cart array
     const productIndex = existingCart.findIndex((item) => item.product._id === productsDetailsData._id);
 
     if (productIndex !== -1) {
-      // If the product is already in the cart, update the quantity
       existingCart[productIndex].quantity = count;
     } else {
-      // If the product is not in the cart, add it to the array
       existingCart.push({
         product: productsDetailsData,
         quantity: count,
+        subtotal: count * productsDetailsData.price,
       });
     }
 
-    // Save the updated cart data to localStorage
+    let allSubTotal = JSON.parse(localStorage.getItem('subtotal')) || 0;
+    allSubTotal += count * productsDetailsData.price
+    localStorage.setItem('subtotal', allSubTotal)
+
     localStorage.setItem('cart', JSON.stringify(existingCart));
-    alert('add to cart')
+
+
+
+    alert('added to cart')
   }
 
 
@@ -237,7 +239,7 @@ export default function ProductDetails() {
                       marginRight: "1rem",
                     }}
                   >
-                    {productsDetailsData.price}
+                    ${productsDetailsData.price}
                   </Typography>
                 </Box>
               </Box>

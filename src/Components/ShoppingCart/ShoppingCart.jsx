@@ -20,9 +20,12 @@ import TableRow from "@mui/material/TableRow";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import CustomButton from "../CustomButton";
+import { increaseQuantity } from "../../store/Actions/cartActions";
+import { decreaseQuantity } from "../../store/Actions/cartActions";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getCartItem } from "../../store/Actions/productsActions";
+import { getCartItem } from "../../store/Actions/cartActions";
+import { getSubTotalPrice } from "../../store/Actions/priceActions";
 const styles = {
   headingStyle: {
     fontFamily: "inter",
@@ -49,49 +52,28 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
 
   const dispatch = useDispatch();
   const cartItem = useSelector((state) => state.cart);
+  const allSubTotal = useSelector((state) => state.subtotal);
 
-  const [quantities, setQuantities] = useState(
-    cartItem.map((item) => {
-      return item.quantity
-    })
-  );
-  const [individualSubtotals, setIndividualSubtotals] = useState(
-    cartItem.map((item) => {
-      return (item.product.price * item.quantity)
-    })
-  );
   useEffect(() => {
     dispatch(getCartItem());
+    dispatch(getSubTotalPrice())
   }, [dispatch]);
 
   const matches = useMediaQuery("(min-width:1200px)");
 
   const handleDecrease = (index) => {
 
-
-
-    const temp_quantities = [...quantities];
-    temp_quantities[index] = Math.max(1, temp_quantities[index] - 1);
-    setQuantities(temp_quantities)
-
-    const temp_subtotal = [...individualSubtotals];
-    temp_subtotal[index] = cartItem[index].product.price * temp_quantities[index];
-    setIndividualSubtotals(temp_subtotal)
-
+    dispatch(decreaseQuantity(cartItem[index].product._id))
+    dispatch(getSubTotalPrice())
 
   };
   const handleIncrease = (index) => {
-    const temp_quantities = [...quantities];
-    temp_quantities[index] = temp_quantities[index] + 1;
-    setQuantities(temp_quantities)
 
+    dispatch(increaseQuantity(cartItem[index].product._id));
+    dispatch(getSubTotalPrice())
 
-    const temp_subtotal = [...individualSubtotals];
-    temp_subtotal[index] = cartItem[index].product.price * temp_quantities[index];
-    setIndividualSubtotals(temp_subtotal)
   };
 
-  const totalPrice = individualSubtotals.reduce((acc, subtotal) => acc + subtotal, 0);
 
 
 
@@ -163,7 +145,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                             {/* {row.product} */}
                             <Box sx={{ display: "flex", width: '50%' }}>
                               <Grid>
-                                <img style={{ height: '100%', width: '100%' }} src={row.product.image[0].url} alt="" />
+                                <img style={{ height: '100%', width: '100%' }} src={row.product.image && row.product.image[0].url} alt="" />
                               </Grid>
                               <Grid>
                                 <Typography
@@ -233,7 +215,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                                 -
                               </Typography>
 
-                              {quantities[index]}
+                              {row && row.quantity}
                               <Typography
                                 mr={1}
                                 onClick={() => handleIncrease(index)}
@@ -261,7 +243,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                             }}
                           >
                             {/* ${row.subtotal}${individualSubtotals[index]} */}
-                            ${individualSubtotals[index]}
+                            ${row.subtotal}
                           </TableCell>
                         </TableRow>
                       ))}
@@ -280,7 +262,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                     <Grid item sx={{ width: '50vw' }}>
                       <Box sx={{ display: "flex", }}>
                         <Grid sx={{ height: '15vh', width: '15vw', display: 'flex', justifyContent: 'center', mr: '1rem' }}>
-                          <img style={{ height: '100%', width: '100%' }} src={item.product.image[0].url} alt="" />
+                          <img style={{ height: '60%', width: '100%' }} src={item.product && item.product.image[0].url} alt="" />
                         </Grid>
                         <Grid >
                           <Typography
@@ -292,7 +274,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                               mb: '1rem'
                             }}
                           >
-                            {item.product.name}
+                            {item.product && item.product.name}
                           </Typography>
                           {/* <Typography
                             sx={{
@@ -322,7 +304,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                               -
                             </Typography>
 
-                            {quantities[i]}
+                            {item.quantity}
                             <Typography
                               mr={1}
                               onClick={() => handleIncrease(i)}
@@ -343,7 +325,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                           color: "#121212",
                         }}
                       >
-                        {item.product.price}
+                        {item.price && item.product.price}
                       </Typography>
                       <Box display="flex" justifyContent="flex-end">
                         <ClearIcon fontSize="medium" />
@@ -570,7 +552,8 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                   }}
                 >
                   {/* ${overallTotal}.00 */}
-                  ${totalPrice}
+                  ${allSubTotal}
+                  {/* $500 */}
                 </Typography>
               </Box>
               <Box
@@ -600,7 +583,8 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                   }}
                 >
                   {/* ${totalPrice}.00 */}
-                  ${totalPrice}
+                  ${allSubTotal}
+                  {/* $550 */}
                 </Typography>
               </Box>
               <Box onClick={handelCheckoutClick}>

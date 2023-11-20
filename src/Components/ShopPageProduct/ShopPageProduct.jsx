@@ -67,11 +67,15 @@ const styles = {
 
 const ShopPageProduct = ({ src, alt, name, price, id }) => {
   const productsDetailsData = useSelector((state) => state.productDetails);
+  // console.log(productsDetailsData);
+  const addToCartHandler = () => {
 
+    alert("added to cart")
+  }
   return (
     <Grid item mb={3}>
       <Typography variant="body2" mb={1}>
-        <Link style={styles.linkStyle} to="/">
+        {/* <Link style={styles.linkStyle} to="/">
           Home
         </Link>{" "}
         &nbsp;{`>`}&nbsp;
@@ -80,7 +84,7 @@ const ShopPageProduct = ({ src, alt, name, price, id }) => {
           to={`/product/category/${productsDetailsData.category}`}
         >
           {productsDetailsData.category}
-        </Link>{" "}
+        </Link>{" "} */}
       </Typography>
       <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
         <Grid item sx={styles.container}>
@@ -100,7 +104,7 @@ const ShopPageProduct = ({ src, alt, name, price, id }) => {
           </Box>
         </Grid>
       </Link>
-      <Box sx={styles.btnBox}>
+      <Box sx={styles.btnBox} onClick={addToCartHandler}>
         <CustomButton type="button" wdth="80%">
           Add to cart
         </CustomButton>
