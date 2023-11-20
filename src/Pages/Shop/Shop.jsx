@@ -84,7 +84,6 @@ const Shop = () => {
 
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.products.product);
-  console.log(productData);
 
   // console.log("prev product data", typeof ShopData);
 
@@ -120,7 +119,7 @@ const Shop = () => {
 
     return categoryMatch && priceMatch;
   });
-  console.log("product data", filteredItems)
+  // console.log("product data", filteredItems)
   // Pagination
   const [page, setPage] = useState(1);
   const itemsPerPage = 12;
@@ -245,6 +244,7 @@ const Shop = () => {
                       discountPrice={item.price}
                       // price={item.price}
                       categories={item.category}
+                      id={item._id}
                     />
                   </Grid>
                 ))
@@ -260,33 +260,13 @@ const Shop = () => {
                       justifyContent: "center",
                       fontSize: "20px",
                     }}
-                  // sx={{
-                  //   fontFamily: "Poppins",
-                  //   fontWeight: "400",
-                  //   fontSize: "34px",
-                  //   textAlign:"center",
-                  //   justifyContent:"center"
-                  // }}
-                  //   >
+
                   >
                     Product Not Found!
                   </Grid>
                 )
             }
-            {/* <Grid
-              // key={index}
-              sx={{ width: { xs: "46%", md: "23%", sm: "30%" } }}
-            >
-              <ShopPageProduct
-                src={productData && productData[1].image[0].url}
-                // alt={item.alt}
-                alt="image"
-                name={productData && productData[0].name}
-                discountPrice={productData && productData[0].price}
-                // price={item.price}
-                categories={productData && productData[0].category}
-              />
-            </Grid> */}
+
 
           </Grid>
         </Grid>

@@ -3,7 +3,7 @@ import CustomButton from "../../Components/CustomButton";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
+const ShopPageProduct = ({ src, alt, name, discountPrice, price, id }) => {
   const styles = {
     container: {
       position: "relative",
@@ -56,9 +56,10 @@ const ShopPageProduct = ({ src, alt, name, discountPrice, price }) => {
       color: "#141718",
     },
   };
+
   return (
     <Grid item mb={3}>
-      <Link to={"/product-details"} style={{ textDecoration: "none" }}>
+      <Link to={`/product/${id}`} style={{ textDecoration: "none" }}>
         <Grid item sx={styles.container}>
           <img src={src} alt={alt} style={{ width: "100%", height: "100%" }} />
 
