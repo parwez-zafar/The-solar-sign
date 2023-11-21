@@ -252,7 +252,7 @@ const Shop = () => {
                   fontSize: "20px",
                 }}
               >
-                Product Not Found!
+                NO Product Not Found!
               </Grid>
             )}
           </Grid>

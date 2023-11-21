@@ -3,6 +3,7 @@ import CustomButton from "../../Components/CustomButton";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const styles = {
   container: {
@@ -69,9 +70,8 @@ const ShopPageProduct = ({ src, alt, name, price, id }) => {
   const productsDetailsData = useSelector((state) => state.productDetails);
   // console.log(productsDetailsData);
   const addToCartHandler = () => {
-
-    alert("added to cart")
-  }
+    toast.success("added to cart");
+  };
   return (
     <Grid item mb={3}>
       <Typography variant="body2" mb={1}>
