@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import CustomButton from "../../Components/CustomButton";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getSingleProductDetails } from "../../store/Actions/productsActions";
 
@@ -70,13 +70,7 @@ const styles = {
 const ShopPageProduct = ({ src, alt, name, price, id, product }) => {
   const dispatch = useDispatch();
 
-  // console.log(productsDetailsData);
-  const productsDetailsData = useSelector((state) => state.productDetails);
-  // console.log(productsDetailsData);
-  const addToCartHandler = async (id) => {
-
-
-
+  const addToCartHandler = async () => {
 
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -93,7 +87,6 @@ const ShopPageProduct = ({ src, alt, name, price, id, product }) => {
       });
     }
 
-    // Save the updated cart back to local storage
     localStorage.setItem('cart', JSON.stringify(existingCart));
 
     alert('Added to cart');
@@ -151,6 +144,7 @@ ShopPageProduct.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  product: PropTypes.object.isRequired
 };
 
 export default ShopPageProduct;
