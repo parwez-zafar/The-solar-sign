@@ -27,6 +27,10 @@
     {
       "src": "/shop",
       "dest": "/"
+    },
+    {
+      "src": "/contact",
+      "dest": "/"
     }
   ]
 }
