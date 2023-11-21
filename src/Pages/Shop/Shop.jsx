@@ -82,7 +82,7 @@ const Shop = () => {
 
   const dispatch = useDispatch();
   const productData = useSelector((state) => state.products.product);
-
+  // console.log(productData);
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
@@ -238,6 +238,7 @@ const Shop = () => {
                     price={item.price}
                     categories={item.category}
                     id={item._id}
+                    product={item}
                   />
                 </Grid>
               ))

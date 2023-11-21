@@ -24,8 +24,9 @@ import { increaseQuantity } from "../../store/Actions/cartActions";
 import { decreaseQuantity } from "../../store/Actions/cartActions";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getCartItem } from "../../store/Actions/cartActions";
+import { getCartItem, removeItemFromCart } from "../../store/Actions/cartActions";
 import { getSubTotalPrice } from "../../store/Actions/priceActions";
+// import { removeItemFromCart } from "../../store/Actions/cartActions";
 const styles = {
   headingStyle: {
     fontFamily: "inter",
@@ -75,7 +76,13 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
   };
 
 
-
+  // remove cart item
+  const removeCartItemHandler = (id) => {
+    // console.log(id);
+    dispatch(removeItemFromCart(id));
+    dispatch(getSubTotalPrice());
+    alert("removed")
+  }
 
   const [selectedValue, setSelectedValue] = useState("free");
 
@@ -169,7 +176,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                                 >
                                   Color : {row.product.color}
                                 </Typography> */}
-                                <Box
+                                <Box onClick={() => removeCartItemHandler(row.product._id)}
                                   sx={{
                                     color: "#6C7275",
                                     width: "105%",
@@ -327,7 +334,7 @@ const ShoppingCart = ({ handelCheckoutClick }) => {
                       >
                         {item.price && item.product.price}
                       </Typography>
-                      <Box display="flex" justifyContent="flex-end">
+                      <Box onClick={() => removeCartItemHandler(item.product._id)} display="flex" justifyContent="flex-end">
                         <ClearIcon fontSize="medium" />
                       </Box>
                     </Grid>

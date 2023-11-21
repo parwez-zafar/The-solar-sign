@@ -2,9 +2,12 @@
 import {
     getCart as getCartAction,
     increaseCartQuantity as increaseCartQuantityAction,
-    decreaseCartQuantity as decreaseCartQuantityAction
+    decreaseCartQuantity as decreaseCartQuantityAction,
+    removeCartItem as removeCartItemAction
 
 } from "../storeSlice";
+
+
 
 export const getCartItem = () => async (dispatch) => {
     try {
@@ -21,7 +24,7 @@ export const getCartItem = () => async (dispatch) => {
         }
     }
     catch (error) {
-        console.log("error in getAllProducts action", error.message);
+        console.log("error in get cart item action", error.message);
 
     }
 }
@@ -53,7 +56,7 @@ export const increaseQuantity = (id) => async (dispatch) => {
         }
     }
     catch (error) {
-        console.log("error in getAllProducts action", error.message);
+        console.log("error in increase cart quantity action", error.message);
 
     }
 }
@@ -83,7 +86,24 @@ export const decreaseQuantity = (id) => async (dispatch) => {
         }
     }
     catch (error) {
-        console.log("error in getAllProducts action", error.message);
+        console.log("error in dectease cart quantity action", error.message);
 
     }
 }
+export const removeItemFromCart = (id) => (dispatch) => {
+    try {
+        const cartItemString = localStorage.getItem('cart');
+        if (!cartItemString) {
+            return false;
+        } else {
+            const cartItems = JSON.parse(cartItemString);
+            const updatedCart = cartItems.filter((item) => item.product._id !== id);
+            localStorage.setItem('cart', JSON.stringify(updatedCart));
+            dispatch(removeCartItemAction(updatedCart))
+        }
+    }
+    catch (error) {
+        console.log("error in remove from cart action", error.message);
+
+    }
+}   

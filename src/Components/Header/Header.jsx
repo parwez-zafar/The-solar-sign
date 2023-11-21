@@ -65,7 +65,7 @@ const Header = () => {
     const logoData = await axios.get(
       "https://printsigns.onrender.com" + "/api/config"
     );
-    setLogo(logoData?.data.result[0].logo);
+    setLogo(logoData?.data?.result[0]?.logo[0]);
   };
 
   React.useEffect(() => {
