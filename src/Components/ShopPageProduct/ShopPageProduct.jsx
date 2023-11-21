@@ -67,40 +67,43 @@ const styles = {
   },
 };
 
-const ShopPageProduct = ({ src, alt, name, price, id }) => {
+const ShopPageProduct = ({ src, alt, name, price, id, product }) => {
   const dispatch = useDispatch();
+
+  // console.log(productsDetailsData);
   const productsDetailsData = useSelector((state) => state.productDetails);
   // console.log(productsDetailsData);
-  const addToCartHandler = () => {
+  const addToCartHandler = async (id) => {
+
+
+
+
     const existingCart = JSON.parse(localStorage.getItem('cart')) || [];
-    const productIndex = existingCart.findIndex((item) => item.product._id === productsDetailsData._id);
+
+    const productIndex = existingCart.findIndex(item => item.product._id === product._id);
 
     if (productIndex !== -1) {
       existingCart[productIndex].quantity = 1;
+      existingCart[productIndex].subtotal = price;
     } else {
       existingCart.push({
-        product: productsDetailsData,
+        product: product,
         quantity: 1,
-        subtotal: 1 * productsDetailsData.price,
+        subtotal: price
       });
     }
 
-    let allSubTotal = localStorage.getItem('subtotal') || 0;
-    if (allSubTotal === 0)
-      allSubTotal = JSON.parse(allSubTotal)
-    allSubTotal += 1 * productsDetailsData.price
-    localStorage.setItem('subtotal', allSubTotal)
-
+    // Save the updated cart back to local storage
     localStorage.setItem('cart', JSON.stringify(existingCart));
 
+    alert('Added to cart');
 
-
-    alert('added to cart')
   }
 
   useEffect(() => {
     dispatch(getSingleProductDetails(id));
   }, [dispatch, id]);
+
   return (
     <Grid item mb={3}>
       <Typography variant="body2" mb={1}>
@@ -133,7 +136,7 @@ const ShopPageProduct = ({ src, alt, name, price, id }) => {
           </Box>
         </Grid>
       </Link>
-      <Box sx={styles.btnBox} onClick={addToCartHandler}>
+      <Box sx={styles.btnBox} onClick={() => addToCartHandler(id)}>
         <CustomButton type="button" wdth="80%">
           Add to cart
         </CustomButton>
